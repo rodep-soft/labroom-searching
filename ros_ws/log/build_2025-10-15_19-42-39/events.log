@@ -1,0 +1,179 @@
+[0.000000] (-) TimerEvent: {}
+[0.001301] (-) JobUnselected: {'identifier': 'wheel_driver'}
+[0.002258] (joy_display) JobQueued: {'identifier': 'joy_display', 'dependencies': OrderedDict()}
+[0.002326] (joy_display) JobStarted: {'identifier': 'joy_display'}
+[0.021935] (joy_display) JobProgress: {'identifier': 'joy_display', 'progress': 'cmake'}
+[0.025862] (joy_display) JobProgress: {'identifier': 'joy_display', 'progress': 'build'}
+[0.026642] (joy_display) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/user/RoDEP/room_serching/labroom-searching/ros_ws/build/joy_display', '--', '-j14', '-l14'], 'cwd': '/home/user/RoDEP/room_serching/labroom-searching/ros_ws/build/joy_display', 'env': OrderedDict({'PYTHON_BASIC_REPL': '1', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'GZ_SIM_RESOURCE_PATH': '/opt/ros/jazzy/share', 'USER': 'user', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'GIT_ASKPASS': '/home/user/.vscode-server/bin/03c265b1adee71ac88f833e065f7bb956b60550a/extensions/git/dist/askpass.sh', 'SHLVL': '2', 'LIBGL_ALWAYS_SOFTWARE': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'WT_PROFILE_ID': '{51855cb2-8cce-5362-8f54-464b92b32386}', 'MOTD_SHOWN': 'update-motd', 'HOME': '/home/user', 'OLDPWD': '/home/user/RoDEP/room_serching/labroom-searching', 'TERM_PROGRAM_VERSION': '1.105.0', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-e2e6e927-1968-4c6b-9342-6e2f0210ae27.sock', 'ROS_PYTHON_VERSION': '3', 'VSCODE_GIT_ASKPASS_MAIN': '/home/user/.vscode-server/bin/03c265b1adee71ac88f833e065f7bb956b60550a/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/home/user/.vscode-server/bin/03c265b1adee71ac88f833e065f7bb956b60550a/node', 'PYDEVD_DISABLE_FILE_VALIDATION': '1', 'BUNDLED_DEBUGPY_PATH': '/home/user/.vscode-server/extensions/ms-python.debugpy-2025.14.1-linux-x64/bundled/libs/debugpy', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'WSL_DISTRO_NAME': 'Ubuntu', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'WAYLAND_DISPLAY': 'wayland-0', 'ROS_DISTRO': 'jazzy', 'GTK_IM_MODULE': 'fcitx', 'LOGNAME': 'user', 'NAME': 'Code', 'WSL_INTEROP': '/run/WSL/6403_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'PATH': '/home/user/.vscode-server/bin/03c265b1adee71ac88f833e065f7bb956b60550a/bin/remote-cli:/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/usbipd-win/:/mnt/c/Program Files/Git/cmd:/mnt/c/Users/ponqo/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/ponqo/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:/home/user/.vscode-server/extensions/ms-python.debugpy-2025.14.1-linux-x64/bundled/scripts/noConfigScripts:/home/user/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand', 'WT_SESSION': '4cfcd4ea-220f-474f-9dce-4119d6fc9ef0', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'DISPLAY': ':0', 'VSCODE_DEBUGPY_ADAPTER_ENDPOINTS': '/home/user/.vscode-server/extensions/ms-python.debugpy-2025.14.1-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-f0c59d5cd57536ac.txt', 'LANG': 'en_US.UTF-8', 'PYTHONSTARTUP': '/home/user/.vscode-server/data/User/workspaceStorage/58117ace72f2a1971ff4f549b94a4f34/ms-python.python/pythonrc.py', 'XMODIFIERS': '@im=fcitx', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-e16362a156.sock', 'TERM_PROGRAM': 'vscode', 'ROS_DOMAIN_ID': '7', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'DefaultIMModule': 'fcitx', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'GIT_PAGER': 'cat', 'QT_IM_MODULE': 'fcitx', 'PWD': '/home/user/RoDEP/room_serching/labroom-searching/ros_ws/build/joy_display', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy', 'WSLENV': 'ELECTRON_RUN_AS_NODE/w:WT_SESSION:WT_PROFILE_ID:'}), 'shell': False}
+[0.099253] (-) TimerEvent: {}
+[0.199952] (-) TimerEvent: {}
+[0.248107] (joy_display) StdoutLine: {'line': b'-- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)\n'}
+[0.299998] (-) TimerEvent: {}
+[0.400668] (-) TimerEvent: {}
+[0.501082] (-) TimerEvent: {}
+[0.562755] (joy_display) StdoutLine: {'line': b'-- Found rclcpp: 28.1.12 (/opt/ros/jazzy/share/rclcpp/cmake)\n'}
+[0.601514] (-) TimerEvent: {}
+[0.702062] (-) TimerEvent: {}
+[0.802422] (-) TimerEvent: {}
+[0.895465] (joy_display) StdoutLine: {'line': b'-- Found rosidl_generator_c: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)\n'}
+[0.902896] (-) TimerEvent: {}
+[0.921765] (joy_display) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)\n'}
+[0.974909] (joy_display) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.003128] (-) TimerEvent: {}
+[1.024267] (joy_display) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.103517] (-) TimerEvent: {}
+[1.204547] (-) TimerEvent: {}
+[1.230475] (joy_display) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 7.3.2 (/opt/ros/jazzy/share/rmw_implementation_cmake/cmake)\n'}
+[1.241300] (joy_display) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 8.4.3 (/opt/ros/jazzy/share/rmw_fastrtps_cpp/cmake)\n'}
+[1.305178] (-) TimerEvent: {}
+[1.405719] (-) TimerEvent: {}
+[1.506490] (-) TimerEvent: {}
+[1.607040] (-) TimerEvent: {}
+[1.623135] (joy_display) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[1.707272] (-) TimerEvent: {}
+[1.807996] (-) TimerEvent: {}
+[1.908632] (-) TimerEvent: {}
+[2.009363] (-) TimerEvent: {}
+[2.023043] (joy_display) StdoutLine: {'line': b'-- Found sensor_msgs: 5.3.6 (/opt/ros/jazzy/share/sensor_msgs/cmake)\n'}
+[2.109620] (-) TimerEvent: {}
+[2.171836] (joy_display) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.17.3 (/opt/ros/jazzy/share/ament_lint_auto/cmake)\n'}
+[2.209828] (-) TimerEvent: {}
+[2.310220] (-) TimerEvent: {}
+[2.311693] (joy_display) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[2.311879] (joy_display) StdoutLine: {'line': b'-- Configured cppcheck include dirs: \n'}
+[2.311930] (joy_display) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[2.313676] (joy_display) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[2.316168] (joy_display) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[2.316599] (joy_display) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[2.317264] (joy_display) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[2.324174] (joy_display) StdoutLine: {'line': b'-- Configuring done (2.1s)\n'}
+[2.357460] (joy_display) StdoutLine: {'line': b'-- Generating done (0.0s)\n'}
+[2.364784] (joy_display) StdoutLine: {'line': b'-- Build files have been written to: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/build/joy_display\n'}
+[2.410414] (-) TimerEvent: {}
+[2.447763] (joy_display) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/joy_display.dir/src/joy_display.cpp.o\x1b[0m\n'}
+[2.510796] (-) TimerEvent: {}
+[2.611372] (-) TimerEvent: {}
+[2.711921] (-) TimerEvent: {}
+[2.812480] (-) TimerEvent: {}
+[2.913381] (-) TimerEvent: {}
+[3.014038] (-) TimerEvent: {}
+[3.114608] (-) TimerEvent: {}
+[3.215227] (-) TimerEvent: {}
+[3.315670] (-) TimerEvent: {}
+[3.416097] (-) TimerEvent: {}
+[3.516585] (-) TimerEvent: {}
+[3.617133] (-) TimerEvent: {}
+[3.717778] (-) TimerEvent: {}
+[3.818530] (-) TimerEvent: {}
+[3.919497] (-) TimerEvent: {}
+[4.020236] (-) TimerEvent: {}
+[4.120984] (-) TimerEvent: {}
+[4.221628] (-) TimerEvent: {}
+[4.322035] (-) TimerEvent: {}
+[4.422432] (-) TimerEvent: {}
+[4.523092] (-) TimerEvent: {}
+[4.624049] (-) TimerEvent: {}
+[4.724826] (-) TimerEvent: {}
+[4.825579] (-) TimerEvent: {}
+[4.925994] (-) TimerEvent: {}
+[5.026641] (-) TimerEvent: {}
+[5.127116] (-) TimerEvent: {}
+[5.228032] (-) TimerEvent: {}
+[5.328749] (-) TimerEvent: {}
+[5.429521] (-) TimerEvent: {}
+[5.530094] (-) TimerEvent: {}
+[5.631162] (-) TimerEvent: {}
+[5.732103] (-) TimerEvent: {}
+[5.832711] (-) TimerEvent: {}
+[5.933367] (-) TimerEvent: {}
+[6.034372] (-) TimerEvent: {}
+[6.134821] (-) TimerEvent: {}
+[6.235278] (-) TimerEvent: {}
+[6.335718] (-) TimerEvent: {}
+[6.436172] (-) TimerEvent: {}
+[6.536843] (-) TimerEvent: {}
+[6.637315] (-) TimerEvent: {}
+[6.737956] (-) TimerEvent: {}
+[6.838707] (-) TimerEvent: {}
+[6.939195] (-) TimerEvent: {}
+[7.039942] (-) TimerEvent: {}
+[7.140487] (-) TimerEvent: {}
+[7.241201] (-) TimerEvent: {}
+[7.341821] (-) TimerEvent: {}
+[7.442926] (-) TimerEvent: {}
+[7.543390] (-) TimerEvent: {}
+[7.643804] (-) TimerEvent: {}
+[7.744696] (-) TimerEvent: {}
+[7.845304] (-) TimerEvent: {}
+[7.945988] (-) TimerEvent: {}
+[8.046578] (-) TimerEvent: {}
+[8.147028] (-) TimerEvent: {}
+[8.247616] (-) TimerEvent: {}
+[8.348167] (-) TimerEvent: {}
+[8.449249] (-) TimerEvent: {}
+[8.549855] (-) TimerEvent: {}
+[8.650641] (-) TimerEvent: {}
+[8.751284] (-) TimerEvent: {}
+[8.852054] (-) TimerEvent: {}
+[8.952539] (-) TimerEvent: {}
+[9.053055] (-) TimerEvent: {}
+[9.153436] (-) TimerEvent: {}
+[9.253871] (-) TimerEvent: {}
+[9.354718] (-) TimerEvent: {}
+[9.455227] (-) TimerEvent: {}
+[9.555946] (-) TimerEvent: {}
+[9.656388] (-) TimerEvent: {}
+[9.757224] (-) TimerEvent: {}
+[9.857899] (-) TimerEvent: {}
+[9.958676] (-) TimerEvent: {}
+[10.059318] (-) TimerEvent: {}
+[10.159741] (-) TimerEvent: {}
+[10.260298] (-) TimerEvent: {}
+[10.361043] (-) TimerEvent: {}
+[10.461538] (-) TimerEvent: {}
+[10.562037] (-) TimerEvent: {}
+[10.662441] (-) TimerEvent: {}
+[10.762871] (-) TimerEvent: {}
+[10.863299] (-) TimerEvent: {}
+[10.963746] (-) TimerEvent: {}
+[11.064413] (-) TimerEvent: {}
+[11.164805] (-) TimerEvent: {}
+[11.265242] (-) TimerEvent: {}
+[11.365659] (-) TimerEvent: {}
+[11.466310] (-) TimerEvent: {}
+[11.567063] (-) TimerEvent: {}
+[11.667473] (-) TimerEvent: {}
+[11.768003] (-) TimerEvent: {}
+[11.868467] (-) TimerEvent: {}
+[11.894149] (joy_display) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable joy_display\x1b[0m\n'}
+[11.969054] (-) TimerEvent: {}
+[12.069649] (-) TimerEvent: {}
+[12.170354] (-) TimerEvent: {}
+[12.270825] (-) TimerEvent: {}
+[12.371241] (-) TimerEvent: {}
+[12.451808] (joy_display) StdoutLine: {'line': b'[100%] Built target joy_display\n'}
+[12.471480] (-) TimerEvent: {}
+[12.483934] (joy_display) CommandEnded: {'returncode': 0}
+[12.485770] (joy_display) JobProgress: {'identifier': 'joy_display', 'progress': 'install'}
+[12.494382] (joy_display) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/user/RoDEP/room_serching/labroom-searching/ros_ws/build/joy_display'], 'cwd': '/home/user/RoDEP/room_serching/labroom-searching/ros_ws/build/joy_display', 'env': OrderedDict({'PYTHON_BASIC_REPL': '1', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'GZ_SIM_RESOURCE_PATH': '/opt/ros/jazzy/share', 'USER': 'user', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'GIT_ASKPASS': '/home/user/.vscode-server/bin/03c265b1adee71ac88f833e065f7bb956b60550a/extensions/git/dist/askpass.sh', 'SHLVL': '2', 'LIBGL_ALWAYS_SOFTWARE': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'WT_PROFILE_ID': '{51855cb2-8cce-5362-8f54-464b92b32386}', 'MOTD_SHOWN': 'update-motd', 'HOME': '/home/user', 'OLDPWD': '/home/user/RoDEP/room_serching/labroom-searching', 'TERM_PROGRAM_VERSION': '1.105.0', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-e2e6e927-1968-4c6b-9342-6e2f0210ae27.sock', 'ROS_PYTHON_VERSION': '3', 'VSCODE_GIT_ASKPASS_MAIN': '/home/user/.vscode-server/bin/03c265b1adee71ac88f833e065f7bb956b60550a/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/home/user/.vscode-server/bin/03c265b1adee71ac88f833e065f7bb956b60550a/node', 'PYDEVD_DISABLE_FILE_VALIDATION': '1', 'BUNDLED_DEBUGPY_PATH': '/home/user/.vscode-server/extensions/ms-python.debugpy-2025.14.1-linux-x64/bundled/libs/debugpy', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'WSL_DISTRO_NAME': 'Ubuntu', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'WAYLAND_DISPLAY': 'wayland-0', 'ROS_DISTRO': 'jazzy', 'GTK_IM_MODULE': 'fcitx', 'LOGNAME': 'user', 'NAME': 'Code', 'WSL_INTEROP': '/run/WSL/6403_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'PATH': '/home/user/.vscode-server/bin/03c265b1adee71ac88f833e065f7bb956b60550a/bin/remote-cli:/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/usbipd-win/:/mnt/c/Program Files/Git/cmd:/mnt/c/Users/ponqo/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/ponqo/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:/home/user/.vscode-server/extensions/ms-python.debugpy-2025.14.1-linux-x64/bundled/scripts/noConfigScripts:/home/user/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand', 'WT_SESSION': '4cfcd4ea-220f-474f-9dce-4119d6fc9ef0', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'DISPLAY': ':0', 'VSCODE_DEBUGPY_ADAPTER_ENDPOINTS': '/home/user/.vscode-server/extensions/ms-python.debugpy-2025.14.1-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-f0c59d5cd57536ac.txt', 'LANG': 'en_US.UTF-8', 'PYTHONSTARTUP': '/home/user/.vscode-server/data/User/workspaceStorage/58117ace72f2a1971ff4f549b94a4f34/ms-python.python/pythonrc.py', 'XMODIFIERS': '@im=fcitx', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-e16362a156.sock', 'TERM_PROGRAM': 'vscode', 'ROS_DOMAIN_ID': '7', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'DefaultIMModule': 'fcitx', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'GIT_PAGER': 'cat', 'QT_IM_MODULE': 'fcitx', 'PWD': '/home/user/RoDEP/room_serching/labroom-searching/ros_ws/build/joy_display', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy', 'WSLENV': 'ELECTRON_RUN_AS_NODE/w:WT_SESSION:WT_PROFILE_ID:'}), 'shell': False}
+[12.501849] (joy_display) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[12.503161] (joy_display) StdoutLine: {'line': b'-- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/ament_index/resource_index/package_run_dependencies/joy_display\n'}
+[12.503378] (joy_display) StdoutLine: {'line': b'-- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/ament_index/resource_index/parent_prefix_path/joy_display\n'}
+[12.503549] (joy_display) StdoutLine: {'line': b'-- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/environment/ament_prefix_path.sh\n'}
+[12.503710] (joy_display) StdoutLine: {'line': b'-- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/environment/ament_prefix_path.dsv\n'}
+[12.503934] (joy_display) StdoutLine: {'line': b'-- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/environment/path.sh\n'}
+[12.504006] (joy_display) StdoutLine: {'line': b'-- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/environment/path.dsv\n'}
+[12.504062] (joy_display) StdoutLine: {'line': b'-- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/local_setup.bash\n'}
+[12.504116] (joy_display) StdoutLine: {'line': b'-- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/local_setup.sh\n'}
+[12.504164] (joy_display) StdoutLine: {'line': b'-- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/local_setup.zsh\n'}
+[12.504221] (joy_display) StdoutLine: {'line': b'-- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/local_setup.dsv\n'}
+[12.504266] (joy_display) StdoutLine: {'line': b'-- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/package.dsv\n'}
+[12.504310] (joy_display) StdoutLine: {'line': b'-- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/ament_index/resource_index/packages/joy_display\n'}
+[12.504358] (joy_display) StdoutLine: {'line': b'-- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/cmake/joy_displayConfig.cmake\n'}
+[12.504401] (joy_display) StdoutLine: {'line': b'-- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/cmake/joy_displayConfig-version.cmake\n'}
+[12.504445] (joy_display) StdoutLine: {'line': b'-- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/package.xml\n'}
+[12.505210] (joy_display) StdoutLine: {'line': b'-- Installing: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/lib/joy_display/joy_display\n'}
+[12.508438] (joy_display) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/lib/joy_display/joy_display" to ""\n'}
+[12.510954] (joy_display) CommandEnded: {'returncode': 0}
+[12.544973] (joy_display) JobEnded: {'identifier': 'joy_display', 'rc': 0}
+[12.546261] (-) EventReactorShutdown: {}

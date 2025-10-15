@@ -1,0 +1,46 @@
+[0.029s] Invoking command in '/home/user/RoDEP/room_serching/labroom-searching/ros_ws/build/joy_display': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/RoDEP/room_serching/labroom-searching/ros_ws/build/joy_display -- -j14 -l14
+[0.247s] -- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.561s] -- Found rclcpp: 28.1.12 (/opt/ros/jazzy/share/rclcpp/cmake)
+[0.893s] -- Found rosidl_generator_c: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)
+[0.920s] -- Found rosidl_generator_cpp: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)
+[0.973s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.022s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.228s] -- Found rmw_implementation_cmake: 7.3.2 (/opt/ros/jazzy/share/rmw_implementation_cmake/cmake)
+[1.240s] -- Found rmw_fastrtps_cpp: 8.4.3 (/opt/ros/jazzy/share/rmw_fastrtps_cpp/cmake)
+[1.621s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[2.021s] -- Found sensor_msgs: 5.3.6 (/opt/ros/jazzy/share/sensor_msgs/cmake)
+[2.170s] -- Found ament_lint_auto: 0.17.3 (/opt/ros/jazzy/share/ament_lint_auto/cmake)
+[2.310s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[2.310s] -- Configured cppcheck include dirs: 
+[2.310s] -- Configured cppcheck exclude dirs and/or files: 
+[2.312s] -- Added test 'lint_cmake' to check CMake code style
+[2.314s] -- Added test 'uncrustify' to check C / C++ code style
+[2.314s] -- Configured uncrustify additional arguments: 
+[2.315s] -- Added test 'xmllint' to check XML markup files
+[2.322s] -- Configuring done (2.1s)
+[2.355s] -- Generating done (0.0s)
+[2.363s] -- Build files have been written to: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/build/joy_display
+[2.446s] [ 50%] [32mBuilding CXX object CMakeFiles/joy_display.dir/src/joy_display.cpp.o[0m
+[11.892s] [100%] [32m[1mLinking CXX executable joy_display[0m
+[12.450s] [100%] Built target joy_display
+[12.482s] Invoked command in '/home/user/RoDEP/room_serching/labroom-searching/ros_ws/build/joy_display' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/RoDEP/room_serching/labroom-searching/ros_ws/build/joy_display -- -j14 -l14
+[12.493s] Invoking command in '/home/user/RoDEP/room_serching/labroom-searching/ros_ws/build/joy_display': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/RoDEP/room_serching/labroom-searching/ros_ws/build/joy_display
+[12.501s] -- Install configuration: ""
+[12.501s] -- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/ament_index/resource_index/package_run_dependencies/joy_display
+[12.501s] -- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/ament_index/resource_index/parent_prefix_path/joy_display
+[12.501s] -- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/environment/ament_prefix_path.sh
+[12.502s] -- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/environment/ament_prefix_path.dsv
+[12.502s] -- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/environment/path.sh
+[12.502s] -- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/environment/path.dsv
+[12.502s] -- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/local_setup.bash
+[12.502s] -- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/local_setup.sh
+[12.502s] -- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/local_setup.zsh
+[12.502s] -- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/local_setup.dsv
+[12.502s] -- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/package.dsv
+[12.502s] -- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/ament_index/resource_index/packages/joy_display
+[12.502s] -- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/cmake/joy_displayConfig.cmake
+[12.502s] -- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/cmake/joy_displayConfig-version.cmake
+[12.502s] -- Up-to-date: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/share/joy_display/package.xml
+[12.503s] -- Installing: /home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/lib/joy_display/joy_display
+[12.506s] -- Set non-toolchain portion of runtime path of "/home/user/RoDEP/room_serching/labroom-searching/ros_ws/install/joy_display/lib/joy_display/joy_display" to ""
+[12.509s] Invoked command in '/home/user/RoDEP/room_serching/labroom-searching/ros_ws/build/joy_display' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/RoDEP/room_serching/labroom-searching/ros_ws/build/joy_display
