@@ -1,1 +1,9 @@
-build
+# colcon build成果物等を除外
+# **で任意のディレクトリ階層を指定
+# buildだけだと、恐らく./buildしか除外されない
+# **/buildにすることで、./build, ./ros_ws/build...と除外できる
+# 一度commitしてしまったら、git rm -r <dir>で削除可能
+
+**/build
+**/install
+**/log
