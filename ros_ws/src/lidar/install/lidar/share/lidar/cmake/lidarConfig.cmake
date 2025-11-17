@@ -1,1 +1,0 @@
-/home/user/labroom-searching/ros_ws/src/lidar/build/lidar/ament_cmake_core/lidarConfig.cmake
