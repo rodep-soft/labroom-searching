@@ -1,1 +1,0 @@
-/home/user/labroom-searching/ros_ws/build/wheel_driver/ament_cmake_environment_hooks/local_setup.sh
