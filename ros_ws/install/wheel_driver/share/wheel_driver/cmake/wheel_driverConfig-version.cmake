@@ -1,0 +1,1 @@
+/home/user/labroom-searching/ros_ws/build/wheel_driver/ament_cmake_core/wheel_driverConfig-version.cmake

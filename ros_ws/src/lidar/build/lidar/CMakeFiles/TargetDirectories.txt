@@ -1,0 +1,9 @@
+/home/user/labroom-searching/ros_ws/src/lidar/build/lidar/CMakeFiles/uninstall.dir
+/home/user/labroom-searching/ros_ws/src/lidar/build/lidar/CMakeFiles/lidar_uninstall.dir
+/home/user/labroom-searching/ros_ws/src/lidar/build/lidar/CMakeFiles/test.dir
+/home/user/labroom-searching/ros_ws/src/lidar/build/lidar/CMakeFiles/edit_cache.dir
+/home/user/labroom-searching/ros_ws/src/lidar/build/lidar/CMakeFiles/rebuild_cache.dir
+/home/user/labroom-searching/ros_ws/src/lidar/build/lidar/CMakeFiles/list_install_components.dir
+/home/user/labroom-searching/ros_ws/src/lidar/build/lidar/CMakeFiles/install.dir
+/home/user/labroom-searching/ros_ws/src/lidar/build/lidar/CMakeFiles/install/local.dir
+/home/user/labroom-searching/ros_ws/src/lidar/build/lidar/CMakeFiles/install/strip.dir

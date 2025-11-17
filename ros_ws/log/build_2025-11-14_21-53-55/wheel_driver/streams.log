@@ -1,0 +1,44 @@
+[0.020s] Invoking command in '/home/user/labroom-searching/ros_ws/build/wheel_driver': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/user/labroom-searching/ros_ws/src/wheel_driver -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/user/labroom-searching/ros_ws/install/wheel_driver
+[0.313s] -- The C compiler identification is GNU 13.3.0
+[1.000s] -- The CXX compiler identification is GNU 13.3.0
+[1.530s] -- Detecting C compiler ABI info
+[1.862s] -- Detecting C compiler ABI info - done
+[1.870s] -- Check for working C compiler: /usr/bin/cc - skipped
+[1.873s] -- Detecting C compile features
+[1.874s] -- Detecting C compile features - done
+[1.962s] -- Detecting CXX compiler ABI info
+[2.230s] -- Detecting CXX compiler ABI info - done
+[2.240s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[2.240s] -- Detecting CXX compile features
+[2.241s] -- Detecting CXX compile features - done
+[2.259s] -- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[2.427s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[2.532s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[2.595s] -- Found ament_lint_auto: 0.17.2 (/opt/ros/jazzy/share/ament_lint_auto/cmake)
+[2.711s] -- Added test 'lint_cmake' to check CMake code style
+[2.713s] -- Added test 'xmllint' to check XML markup files
+[2.715s] -- Configuring done (2.7s)
+[2.718s] -- Generating done (0.0s)
+[2.720s] -- Build files have been written to: /home/user/labroom-searching/ros_ws/build/wheel_driver
+[2.726s] Invoked command in '/home/user/labroom-searching/ros_ws/build/wheel_driver' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/user/labroom-searching/ros_ws/src/wheel_driver -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/user/labroom-searching/ros_ws/install/wheel_driver
+[2.728s] Invoking command in '/home/user/labroom-searching/ros_ws/build/wheel_driver': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/labroom-searching/ros_ws/build/wheel_driver -- -j12 -l12
+[2.771s] Invoked command in '/home/user/labroom-searching/ros_ws/build/wheel_driver' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/labroom-searching/ros_ws/build/wheel_driver -- -j12 -l12
+[2.779s] Invoking command in '/home/user/labroom-searching/ros_ws/build/wheel_driver': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/labroom-searching/ros_ws/build/wheel_driver
+[2.786s] -- Install configuration: ""
+[2.786s] -- Execute custom install script
+[2.787s] -- Symlinking: /home/user/labroom-searching/ros_ws/install/wheel_driver/share/ament_index/resource_index/package_run_dependencies/wheel_driver
+[2.794s] -- Symlinking: /home/user/labroom-searching/ros_ws/install/wheel_driver/share/ament_index/resource_index/parent_prefix_path/wheel_driver
+[2.800s] -- Symlinking: /home/user/labroom-searching/ros_ws/install/wheel_driver/share/wheel_driver/environment/ament_prefix_path.sh
+[2.807s] -- Symlinking: /home/user/labroom-searching/ros_ws/install/wheel_driver/share/wheel_driver/environment/ament_prefix_path.dsv
+[2.813s] -- Symlinking: /home/user/labroom-searching/ros_ws/install/wheel_driver/share/wheel_driver/environment/path.sh
+[2.820s] -- Symlinking: /home/user/labroom-searching/ros_ws/install/wheel_driver/share/wheel_driver/environment/path.dsv
+[2.827s] -- Symlinking: /home/user/labroom-searching/ros_ws/install/wheel_driver/share/wheel_driver/local_setup.bash
+[2.835s] -- Symlinking: /home/user/labroom-searching/ros_ws/install/wheel_driver/share/wheel_driver/local_setup.sh
+[2.842s] -- Symlinking: /home/user/labroom-searching/ros_ws/install/wheel_driver/share/wheel_driver/local_setup.zsh
+[2.850s] -- Symlinking: /home/user/labroom-searching/ros_ws/install/wheel_driver/share/wheel_driver/local_setup.dsv
+[2.858s] -- Symlinking: /home/user/labroom-searching/ros_ws/install/wheel_driver/share/wheel_driver/package.dsv
+[2.866s] -- Symlinking: /home/user/labroom-searching/ros_ws/install/wheel_driver/share/ament_index/resource_index/packages/wheel_driver
+[2.874s] -- Symlinking: /home/user/labroom-searching/ros_ws/install/wheel_driver/share/wheel_driver/cmake/wheel_driverConfig.cmake
+[2.881s] -- Symlinking: /home/user/labroom-searching/ros_ws/install/wheel_driver/share/wheel_driver/cmake/wheel_driverConfig-version.cmake
+[2.888s] -- Symlinking: /home/user/labroom-searching/ros_ws/install/wheel_driver/share/wheel_driver/package.xml
+[2.897s] Invoked command in '/home/user/labroom-searching/ros_ws/build/wheel_driver' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/labroom-searching/ros_ws/build/wheel_driver
