@@ -7,6 +7,8 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(geometry_msgs REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -24,3 +26,18 @@ if(BUILD_TESTING)
 endif()
 
 ament_package()
+
+# build wheel_driver node
+add_executable(wheel_driver_node src/wheel_driver_node.cpp)
+ament_target_dependencies(wheel_driver_node rclcpp geometry_msgs)
+
+# link pigpio system library if available
+find_library(PIGPIO_LIB pigpio)
+if(PIGPIO_LIB)
+  target_link_libraries(wheel_driver_node ${PIGPIO_LIB})
+endif()
+
+install(TARGETS
+  wheel_driver_node
+  DESTINATION lib/${PROJECT_NAME}
+)
