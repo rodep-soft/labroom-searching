@@ -209,6 +209,7 @@ ros-jazzy-warehouse-ros
 ros-jazzy-warehouse-ros-sqlite
 samba
 shim-signed
+sl
 software-properties-common
 speedtest-cli
 ssh
