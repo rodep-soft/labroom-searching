@@ -49,8 +49,21 @@ rclcpp_components_register_node(urg_node2
   EXECUTABLE urg_node2_node)
 target_link_libraries(urg_node2 urg_c)
 
+# create executable listener
+add_executable(listener
+  src/simple_listener.cpp
+)
+
+# link library to listener
+ament_target_dependencies(listener
+  rclcpp
+  std_msgs
+  sensor_msgs
+)
+
 install(TARGETS
   urg_node2 urg_c
+  listener
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION lib/${PROJECT_NAME}
 )
