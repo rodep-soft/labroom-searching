@@ -55,13 +55,18 @@ public:
 
 private:
   // トピックを受信したときに呼ばれるコールバック関数
-  void scan_callback(const sensor_msgs::msg::LaserScan::SharedPtr msg) 
+  void scan_callback(const sensor_msgs::msg::LaserScan::SharedPtr msg) const
   {
     // ターミナルへの
-    RCLCPP_INFO(this->get_logger(), "subscribe: %.2f", msg->ranges[0]);
+    if(msg->ranges.size() == 0){
+      RCLCPP_ERROR(this->get_logger(), "received empty ranges date.");
+    }
+    else{
+      RCLCPP_INFO(this->get_logger(), "subscribe: %.2f", msg->ranges[0]);
+    }
   }
 
-  // std_msgs::msg::String型のトピックを受信するsubscriber
+  // std_msgs::msg::LaserScan型のトピックを受信するsubscriber
   rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr subscription_;
 };
 
