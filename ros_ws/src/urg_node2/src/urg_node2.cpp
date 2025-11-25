@@ -492,6 +492,7 @@ void UrgNode2::scan_thread()
         sensor_msgs::msg::LaserScan msg;
         if (create_scan_message(msg)) {
           scan_pub_->publish(msg);
+	  RCLCPP_INFO(this->get_logger(),"Published: %zu",msg.ranges.size());
           if (scan_freq_) {
             scan_freq_->tick();
           }
