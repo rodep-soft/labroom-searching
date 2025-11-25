@@ -49,15 +49,15 @@ public:
     // 第二引数はメッセージのバッファサイズ、
     // 第三引数は受信したときに呼ばれる関数
     subscription_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
-      "Scan", rclcpp::QoS(20), std::bind(&SimpleListener::scan_callback, this, _1)
+      "scan", rclcpp::QoS(20), std::bind(&SimpleListener::scan_callback, this, _1)
     );
   }
 
 private:
   // トピックを受信したときに呼ばれるコールバック関数
-  void scan_callback(const sensor_msgs::msg::LaserScan::SharedPtr msg) const
+  void scan_callback(const sensor_msgs::msg::LaserScan::SharedPtr msg) 
   {
-    // ターミナルへの文字列出力
+    // ターミナルへの
     RCLCPP_INFO(this->get_logger(), "subscribe: %.2f", msg->ranges[0]);
   }
 
