@@ -1,0 +1,3 @@
+[submodule "ros_ws/src/hex_imu"]
+	path = ros_ws/src/hex_imu
+	url = git@github.com:hexfellow/hex_imu.git
