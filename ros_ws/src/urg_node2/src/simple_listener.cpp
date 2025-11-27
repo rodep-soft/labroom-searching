@@ -55,7 +55,7 @@ public:
 
 private:
   // トピックを受信したときに呼ばれるコールバック関数
-  void scan_callback(const sensor_msgs::msg::LaserScan::SharedPtr msg) const
+  void scan_callback(const sensor_msgs::msg::LaserScan::SharedPtr msg)
   {
     // ターミナルへの
     if(msg->ranges.size() == 0){
