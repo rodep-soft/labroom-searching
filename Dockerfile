@@ -1,4 +1,4 @@
-FROM osrf/ros:jazzy-desktop-full
+FROM ros:jazzy-ros-base
 
 RUN apt-get update && apt-get upgrade -y && \
 	apt-get install -y \
