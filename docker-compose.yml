@@ -9,14 +9,14 @@ services:
     privileged: true
     network_mode: host
 
-    working_dir: /root/
+    working_dir: /root/ros_ws
 
-    enviroment:
+    environment:
       - ROS_DOMAIN_ID=0
       - DEBIAN_FRONTEND=noninteractive
       - DISPLAY=${DISPLAY}
 
     volumes:
-      - ./:/root/
+      - ./ros_ws:/root/ros_ws
       - ~/.ccache:/root/.ccache
       - /tmp/.X11-unix:/tmp/.X11-unix:rw # X11 Forwarding

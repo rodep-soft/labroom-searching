@@ -1,4 +1,4 @@
-FROM ros:jazzy-ros-base
+FROM osrf/ros:jazzy-desktop-full
 
 RUN apt-get update && apt-get upgrade -y && \
 	apt-get install -y \
@@ -14,8 +14,8 @@ RUN apt-get update && apt-get upgrade -y && \
 	python3-pip \
 	python3-gpiozero \
 	libboost-system-dev \
-    	ros-humble-joy \
-    	ros-humble-demo-nodes-cpp \
+    	ros-jazzy-joy \
+    	ros-jazzy-demo-nodes-cpp && \
 	rm -rf /var/lib/apt/lists/* # Clean up apt cache
 	
 
@@ -31,12 +31,10 @@ ENV CCACHE_MAXSIZE=30G
 RUN mkdir -p /root/.config/colcon && \
     echo 'build:' > /root/.config/colcon/defaults.yaml && \
     echo '  args: ['\''--symlink-install'\'']' >> /root/.config/colcon/defaults.yaml && \
-    echo 'source /opt/ros/humble/setup.bash' >> /root/.bashrc && \
-    echo 'source /opt/ros/humble/setup.bash' >> /root/.profile
+    echo 'source /opt/ros/jazzy/setup.bash' >> /root/.bashrc && \
+    echo 'source /opt/ros/jazzy/setup.bash' >> /root/.profile
 
 
 WORKDIR /root/ros_ws
-
-COPY ./ ./
 
 CMD ["bash"]
