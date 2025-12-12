@@ -9,5 +9,8 @@ mark:
 sync:
 	sudo xargs apt install -y < packages.txt
 
+alter:
+	sed -i 's/ros:jazzy-ros-base/osrf\/ros:jazzy-desktop-full/g' Dockerfile
 
-
+restore:
+	sed -i 's/osrf\/ros:jazzy-desktop-full/ros:jazzy-ros-base/g' Dockerfile

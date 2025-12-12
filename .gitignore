@@ -2,3 +2,7 @@
 build/
 install/
 log/
+
+.local
+.config
+.bash_history
