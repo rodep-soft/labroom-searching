@@ -1,0 +1,22 @@
+services:
+  labloom:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+
+    container_name: labloom_container
+    tty: true
+    privileged: true
+    network_mode: host
+
+    working_dir: /root/
+
+    enviroment:
+      - ROS_DOMAIN_ID=0
+      - DEBIAN_FRONTEND=noninteractive
+      - DISPLAY=${DISPLAY}
+
+    volumes:
+      - ./:/root/
+      - ~/.ccache:/root/.ccache
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw # X11 Forwarding
