@@ -1,0 +1,8 @@
+# === ROS2 ===
+build/
+install/
+log/
+
+.local
+.config
+.bash_history
