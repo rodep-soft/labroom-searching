@@ -5,13 +5,14 @@
 KeyboardTeleopNode::KeyboardTeleopNode() : rclcpp::Node("keyboard_teleop_node") {
     publisher_ = this->create_publisher<std_msgs::msg::Float64>("/cmd_vel", 10);
 
-    std::cout << "Keyboard Teleop (C++) Started\n";
-    std::cout << "---------------------------\n";
-    std::cout << "Forward[m/s]:  a (1.0), s (1.5), d (2.0)\n";
-    std::cout << "Backward[m/s]: f (-1.0), g (-1.5), h (-2.0)\n";
-    std::cout << "Stop:     Space or other keys\n";
-    std::cout << "Quit:     CTRL-C\n";
-    std::cout << "---------------------------\n";
+    // RCLCPP_INFOで標準出力しているのを書いてほしい
+    RCLCPP_INFO(this->get_logger(), "Keyboard Teleop (C++) Started");
+    RCLCPP_INFO(this->get_logger(), "---------------------------");
+    RCLCPP_INFO(this->get_logger(), "Forward[m/s]:  a (1.0), s (1.5), d (2.0)");
+    RCLCPP_INFO(this->get_logger(), "Backward[m/s]: f (-1.0), g (-1.5), h (-2.0)");
+    RCLCPP_INFO(this->get_logger(), "Stop:     Space or other keys");
+    RCLCPP_INFO(this->get_logger(), "Quit:     CTRL-C");
+    RCLCPP_INFO(this->get_logger(), "---------------------------");
 }
 
 int KeyboardTeleopNode::getchar_nonblock(int timeout_ms) {

@@ -5,10 +5,10 @@ DDSMController::DDSMController() : rclcpp::Node("ddsm_controller_node") {
     declare_parameters();
     get_parameters();
 
-    velocity_subscription_ = this->create_subscription<std_msgs::msg::Float64>(
+    motor_vel_subscription_ = this->create_subscription<std_msgs::msg::Float64>(
         "/cmd_vel", 10, std::bind(&DDSMController::velocity_callback, this, std::placeholders::_1));
     
-    velocity_publisher_ = this->create_publisher<std_msgs::msg::Float64>("motor_vel_feedback", 10);
+    motor_vel_publisher_ = this->create_publisher<std_msgs::msg::Float64>("motor_vel_feedback", 10);
 
     setup_serial_port(serial_port_name_, static_cast<unsigned int>(baud_rate_));
 
@@ -26,9 +26,9 @@ void DDSMController::declare_parameters() {
 }
 
 void DDSMController::get_parameters() {
-    this->get_parameter("port_name", serial_port_name_);
-    this->get_parameter("baud_rate", baud_rate_);
-    this->get_parameter("motor_id", motor_id_);
+    std::string port_name_ = this->get_parameter("port_name").as_string();
+    int baud_rate_ = this->get_parameter("baud_rate").as_int();
+    int motor_id_ = this->get_parameter("motor_id").as_int();
 }
 
 bool DDSMController::setup_serial_port(const std::string& port_name, unsigned int baud_rate) {
@@ -109,7 +109,7 @@ void DDSMController::request_and_receive_feedback() {
 
             auto feedback_msg = std::make_shared<std_msgs::msg::Float64>();
             feedback_msg->data = static_cast<double>(velocity_feedback) / 1000.0; // 単位変換
-            velocity_publisher_->publish(*feedback_msg);
+            motor_vel_publisher_->publish(*feedback_msg);
 
             RCLCPP_INFO(this->get_logger(), "Received velocity feedback from ID 0x%02X: %.2f", motor_id_, feedback_msg->data);
         }
