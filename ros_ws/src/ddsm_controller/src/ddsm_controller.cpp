@@ -26,9 +26,23 @@ void DDSMController::declare_parameters() {
 }
 
 void DDSMController::get_parameters() {
-    std::string port_name_ = this->get_parameter("port_name").as_string();
-    int baud_rate_ = this->get_parameter("baud_rate").as_int();
-    int motor_id_ = this->get_parameter("motor_id").as_int();
+    serial_port_name_ = this->get_parameter("port_name").as_string();
+    baud_rate_ = this->get_parameter("baud_rate").as_int();
+
+    // Allow motor_id to be provided either as an int (e.g., 1) or a hex string (e.g., "0x01").
+    const auto motor_param = this->get_parameter("motor_id");
+    if (motor_param.get_type() == rclcpp::ParameterType::PARAMETER_STRING) {
+        try {
+            motor_id_ = std::stoi(motor_param.as_string(), nullptr, 0); // base 0 lets 0x.. be parsed
+        } catch (const std::exception &e) {
+            RCLCPP_WARN(this->get_logger(), "Failed to parse motor_id as hex/int, fallback to 1: %s", e.what());
+            motor_id_ = 1;
+        }
+    } else {
+        motor_id_ = motor_param.as_int();
+    }
+
+    RCLCPP_INFO(this->get_logger(), "Params -> port: %s, baud: %d, motor_id: 0x%02X", serial_port_name_.c_str(), baud_rate_, motor_id_);
 }
 
 bool DDSMController::setup_serial_port(const std::string& port_name, unsigned int baud_rate) {
