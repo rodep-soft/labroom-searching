@@ -1,0 +1,5 @@
+/joy_driver_node:
+  ros__parameters:
+    axis_linear: 1
+    deadzone_linear: 0.05
+    max_rpm: 330
