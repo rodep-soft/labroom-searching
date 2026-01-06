@@ -8,6 +8,26 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
+
+# Add executable
+add_executable(joy_driver_node src/joy_driver_node.cpp)
+ament_target_dependencies(joy_driver_node rclcpp sensor_msgs std_msgs)
+target_include_directories(joy_driver_node PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+)
+
+# Install executable
+install(TARGETS joy_driver_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+# Install launch and config files
+install(DIRECTORY launch config
+  DESTINATION share/${PROJECT_NAME}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
