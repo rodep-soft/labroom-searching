@@ -10,14 +10,20 @@ RUN apt-get update && apt-get upgrade -y && \
 	tmux \
 	fish \
 	lsof \
+	usbutils\
 	ccache \
 	python3-pip \
 	python3-gpiozero \
 	libboost-system-dev \
+	ros-jazzy-diagnostic-updater\
+	ros-jazzy-laser-proc\
+	ros-jazzy-slam-toolbox\
+	ros-jazzy-rviz2\
     	ros-jazzy-joy \
     	ros-jazzy-demo-nodes-cpp && \
 	rm -rf /var/lib/apt/lists/* # Clean up apt cache
-	
+
+RUN rosdep update && rosdep install -i --from-paths urg_node2	
 
 
 
