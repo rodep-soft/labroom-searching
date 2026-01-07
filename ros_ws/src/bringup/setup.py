@@ -2,10 +2,10 @@ from setuptools import setup
 import os
 from glob import glob
 
-# package_name = 'bringup'
+package_name = 'bringup'
 
 setup(
-    name=['bringup'],
+    name='bringup',
     version='0.0.0',
     packages=package_name,
     data_files=[
