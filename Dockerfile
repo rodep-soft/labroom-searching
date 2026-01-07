@@ -23,7 +23,12 @@ RUN apt-get update && apt-get upgrade -y && \
     	ros-jazzy-demo-nodes-cpp && \
 	rm -rf /var/lib/apt/lists/* # Clean up apt cache
 
-RUN rosdep update && rosdep install -i --from-paths urg_node2	
+RUN rosdep update && \
+	rosdep install -i \
+	--from-paths src \
+	--ignore-src \
+	--rosdistro jazzy
+	
 
 
 
