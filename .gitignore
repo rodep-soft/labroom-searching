@@ -13,3 +13,4 @@ log/
 /ros_ws/src/urg_node2/
 /ros_ws/src/wheel_driver/
 /ros_ws/src/lidar/
+/ros_ws/src/mecanum_controller/
