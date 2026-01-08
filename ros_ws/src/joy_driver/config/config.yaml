@@ -1,0 +1,11 @@
+joy_node:
+  ros__parameters:
+    dev: '/dev/input/js0'
+    deadzone: 0.05
+    autorepeat_rate: 20.0
+
+joy_driver_node:
+  ros__parameters:
+    axis_linear: 1
+    deadzone_linear: 0.05
+    max_rpm: 330
