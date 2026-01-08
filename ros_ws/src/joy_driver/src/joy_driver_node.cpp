@@ -48,5 +48,12 @@ void JoyDriverNode::joy_callback(const sensor_msgs::msg::Joy::SharedPtr msg) {
     driver_msg_.data = axis_value * max_rpm_;
 
     driver_vel_publisher_->publish(driver_msg_);
+}
 
+int main(int argc, char** argv) {
+    rclcpp::init(argc, argv);
+    auto node = std::make_shared<JoyDriverNode>();
+    rclcpp::spin(node);
+    rclcpp::shutdown();
+    return 0;
 }
