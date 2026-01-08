@@ -6,6 +6,7 @@ log/
 .local
 .config
 .bash_history
+<<<<<<< HEAD
 
 
 # Optional local packages (ignored if present)
@@ -14,3 +15,5 @@ log/
 /ros_ws/src/wheel_driver/
 /ros_ws/src/lidar/
 /ros_ws/src/mecanum_controller/
+=======
+>>>>>>> parent of 465f162 (fix gitignore that add urg_node2 and wheel_driver)
