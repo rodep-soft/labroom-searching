@@ -10,10 +10,11 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
 
 # Add executable
 add_executable(joy_driver_node src/joy_driver_node.cpp)
-ament_target_dependencies(joy_driver_node rclcpp sensor_msgs std_msgs)
+ament_target_dependencies(joy_driver_node rclcpp sensor_msgs std_msgs geometry_msgs)
 target_include_directories(joy_driver_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
