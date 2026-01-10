@@ -4,7 +4,9 @@
 
 KeyboardTeleopNode::KeyboardTeleopNode()
     : rclcpp::Node("keyboard_teleop_node"), input_(io_context_, STDIN_FILENO) {
+
     publisher_ = this->create_publisher<std_msgs::msg::Float64>("/motor_vel_rpm", 10);
+
 
     tcgetatter(STDIN_FILENO, &old_terminal_settings_);
     struct termios new_terminal_settings = old_terminal_settings_;
