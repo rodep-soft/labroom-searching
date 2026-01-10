@@ -14,7 +14,7 @@ JoyDriverNode::JoyDriverNode() : Node("joy_driver_node") {
 
     // Publishers
     driver_vel_publisher_ = this->create_publisher<std_msgs::msg::Float64>(
-        "/driver_rpm", 10);
+        "/motor_vel_rpm", 10);
 
     RCLCPP_INFO(this->get_logger(), "JoyDriverNode has started.");
 }
