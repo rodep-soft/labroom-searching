@@ -1,0 +1,35 @@
+name: ROS 2 CI (Compose Up-Exec)
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. リポジトリのチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. ccache用のディレクトリ作成 (ボリュームマウントのエラー防止)
+      # docker-compose.ymlで ~/.ccache をマウントしているため、事前に作っておくと安全です
+      - name: Create cache directory
+        run: mkdir -p ~/.ccache
+
+      # 3. コンテナをバックグラウンドで起動 (up -d)
+      - name: Start container
+        run: docker compose up -d --build
+
+      # 4. 起動中のコンテナでビルドを実行 (exec)
+      - name: Execute colcon build
+        run: |
+          docker compose exec -T labloom /bin/bash -c "source /opt/ros/jazzy/setup.bash && colcon build --symlink-install"
+
+      # 5. 片付け
+      - name: Stop container
+        if: always()
+        run: docker compose down

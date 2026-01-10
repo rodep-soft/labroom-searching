@@ -1,0 +1,6 @@
+/ddsm_controller_node:
+  ros__parameters:
+    port_name: "/dev/ttyUSB0"
+    baud_rate: 115200
+    motor_id: 1
+    
