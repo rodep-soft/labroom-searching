@@ -1,4 +1,4 @@
-FROM ros:jazzy-ros-base
+FROM ros:jazzy-ros-base # arm64でしか動かない
 
 RUN apt-get update && apt-get upgrade -y && \
 	apt-get install -y \
@@ -23,12 +23,15 @@ RUN apt-get update && apt-get upgrade -y && \
   ros-jazzy-demo-nodes-cpp && \
 	rm -rf /var/lib/apt/lists/* # Clean up apt cache
 
-
+# Working dirを指定しておく
 WORKDIR /root/ros_ws
 
 # 先にCOPYUしないとsrcがない！
 COPY ./ros_ws/src src
 
+
+# package.xmlに依存はかいておくこと
+# ここでrosdepで依存解決
 RUN rosdep update && \
 	rosdep install -i \
 	--from-paths src \

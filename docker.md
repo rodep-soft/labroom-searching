@@ -8,7 +8,7 @@ docker compose up -d
 docker compose ps
 ```
 
- ## docker compose build
+## docker compose build
 イメージを作る
 もしできなかったらオプション付ければいんじゃね？
 
