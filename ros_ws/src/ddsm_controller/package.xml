@@ -9,14 +9,15 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
+  <!-- 必ずdependは一回だけ書くこと！ -->
+  <!-- 冗長だとrosdepでこける -->
+
   <depend>rclcpp</depend>
   <depend>std_msgs</depend>
   <!-- Boost is linked via CMake; rosdep entry not required here -->
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
-
-  <depend>rclcpp</depend>
 
   <export>
     <build_type>ament_cmake</build_type>
