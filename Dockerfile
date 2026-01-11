@@ -1,4 +1,6 @@
-FROM ros:jazzy-ros-base # arm64でしか動かない
+
+# arm64でしか動かない
+FROM ros:jazzy-ros-base 
 
 RUN apt-get update && apt-get upgrade -y && \
 	apt-get install -y \
