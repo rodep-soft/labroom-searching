@@ -19,15 +19,21 @@ RUN apt-get update && apt-get upgrade -y && \
 	ros-jazzy-laser-proc\
 	ros-jazzy-slam-toolbox\
 	ros-jazzy-rviz2\
-    	ros-jazzy-joy \
-    	ros-jazzy-demo-nodes-cpp && \
+  ros-jazzy-joy \
+  ros-jazzy-demo-nodes-cpp && \
 	rm -rf /var/lib/apt/lists/* # Clean up apt cache
+
+
+WORKDIR /root/ros_ws
+
+# 先にCOPYUしないとsrcがない！
+COPY ./ros_ws/src src
 
 RUN rosdep update && \
 	rosdep install -i \
 	--from-paths src \
 	--ignore-src \
-	--rosdistro jazzy
+	--rosdistro jazzy -y
 	
 
 
@@ -46,6 +52,5 @@ RUN mkdir -p /root/.config/colcon && \
     echo 'source /opt/ros/jazzy/setup.bash' >> /root/.profile
 
 
-WORKDIR /root/ros_ws
 
 CMD ["bash"]
