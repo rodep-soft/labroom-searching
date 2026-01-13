@@ -14,7 +14,7 @@ RUN apt-get update && apt-get upgrade -y && \
 	tmux \
 	fish \
 	lsof \
-	usbutils\
+	usbutils \
 	ccache \
 	python3-pip \
 	python3-gpiozero \

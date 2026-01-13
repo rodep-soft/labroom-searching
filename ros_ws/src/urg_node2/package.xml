@@ -17,8 +17,8 @@
   <depend>rclcpp_lifecycle</depend>
   <depend>lifecycle_msgs</depend>
   <depend>sensor_msgs</depend>
-  '<depend>diagnostic_updater</depend>'
-  '<depend>laser_proc</depend>'
+  <depend>diagnostic_updater</depend>
+  <depend>laser_proc</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
