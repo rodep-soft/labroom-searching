@@ -1,4 +1,6 @@
-FROM ros:jazzy-ros-base
+
+# arm64でしか動かない
+FROM ros:jazzy-ros-base 
 
 WORKDIR /root/ros_ws
 
@@ -19,8 +21,6 @@ RUN apt-get update && apt-get upgrade -y && \
 	python3-pip \
 	python3-gpiozero \
 	libboost-system-dev \
-	#ros-jazzy-diagnostic-updater \
-	#ros-jazzy-laser-proc \
 	ros-jazzy-slam-toolbox \
 	ros-jazzy-rviz2 \
     	ros-jazzy-joy \
@@ -34,9 +34,6 @@ RUN apt-get update -y && \
 	--from-paths src \
 	--ignore-src \
 	--rosdistro jazzy 
-	#--continue-on-error && \
-	#rm -rf /var/lib/apt/lists/*
-	
 
 
 
@@ -54,6 +51,5 @@ RUN mkdir -p /root/.config/colcon && \
     echo 'source /opt/ros/jazzy/setup.bash' >> /root/.profile
 
 
-#WORKDIR /root/ros_ws
 
 CMD ["bash"]

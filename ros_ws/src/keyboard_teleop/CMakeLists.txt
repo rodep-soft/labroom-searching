@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(wheel_driver)
+project(keyboard_teleop)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -8,10 +8,15 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(geometry_msgs REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(std_msgs REQUIRED)
+
+include_directories(include)
+
+add_executable(keyboard_teleop_node src/keyboard_teleop_node.cpp)
+ament_target_dependencies(keyboard_teleop_node rclcpp std_msgs)
+
+install(TARGETS keyboard_teleop_node DESTINATION lib/${PROJECT_NAME})
+install(DIRECTORY include/ DESTINATION include)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -26,18 +31,3 @@ if(BUILD_TESTING)
 endif()
 
 ament_package()
-
-# build wheel_driver node
-add_executable(wheel_driver_node src/wheel_driver_node.cpp)
-ament_target_dependencies(wheel_driver_node rclcpp geometry_msgs)
-
-# link pigpio system library if available
-find_library(PIGPIO_LIB pigpio)
-if(PIGPIO_LIB)
-  target_link_libraries(wheel_driver_node ${PIGPIO_LIB})
-endif()
-
-install(TARGETS
-  wheel_driver_node
-  DESTINATION lib/${PROJECT_NAME}
-)

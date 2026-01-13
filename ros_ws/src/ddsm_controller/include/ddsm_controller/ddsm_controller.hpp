@@ -1,48 +1,53 @@
+#pragma once
+
 #include <boost/asio.hpp>
 #include <boost/asio/serial_port.hpp>
-#include <boost/system/error_code.hpp>
 
-#include <iostream>
+#include <cstdint>
+#include <memory>
+#include <string>
 #include <vector>
-#include <cstring>
-#include <unistd.h>
-#include <fcntl.h>
-#include <cmath>
 
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/float64.hpp"
 
-class SimpleMotor : public rclcpp::Node {
+class DDSMController : public rclcpp::Node {
     public:
-        SimpleMotor();
-        ~SimpleMotor();
+        DDSMController();
 
     private:
+        // Protocol constants
+        static constexpr uint8_t MOTOR_ID_ = 0x01;
+        static constexpr uint8_t CMD_VELOCITY_ = 0x02;
+        static constexpr uint8_t CMD_GET_STATUS_ = 0x74;
 
-        constexpr uint8_t MOTOR_ID_ = 0x01;
-        constexpr uint8_t CMD_VELOCITY_ = 0x02;
-        constexpr uint8_t GET_STATUS_ = 0x74;
-
+        // IO
         boost::asio::io_context io_context_;
-        boost::asio::serial_port serial_port_;
+        boost::asio::serial_port serial_port_{io_context_};
 
-        rclcpp::Subscription<std_msgs::msg::Float64>::SharedPtr vel_subscription_;
-        rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr vel_publisher_;
+        // ROS interfaces
+        rclcpp::Subscription<std_msgs::msg::Float64>::SharedPtr motor_vel_subscription_;
+        rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr motor_vel_publisher_;
         rclcpp::TimerBase::SharedPtr timer_;
 
+        // Parameters
+        std::string serial_port_name_;
+        int baud_rate_{};
+        int motor_id_{};
+
+        // Param helpers
         void declare_parameters();
         void get_parameters();
 
-        uint16_t calculate_crc16(const std::vector<uint8_t>& data);
-        std::vector<uint8_t> create_velocity_command(double target_vel);
+        // Serial helpers
+        bool setup_serial_port(const std::string &port_name, unsigned int baud_rate);
 
-        int32_t decode_velocity_feedback(const std::vector<uint8_t>& response);
-        void set_protocol_mode();
+        // Protocol helpers
+        uint8_t calc_crc8(const std::vector<uint8_t> &data);
+        std::vector<uint8_t> create_velocity_command(double target_velocity);
+        int32_t decode_velocity_feedback(const std::vector<uint8_t> &response);
+        void request_and_receive_feedback();
 
-        bool open_serial_port(const std::string& port_name, unsigned int baud_rate);
-        void setup_serial_port(const std::string& port_name, unsigned int baud_rate);
-
+        // Callbacks
         void velocity_callback(const std_msgs::msg::Float64::SharedPtr msg);
-        void request_velocity_feedback();       
-
-}
+};

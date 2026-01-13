@@ -6,3 +6,8 @@ log/
 .local
 .config
 .bash_history
+
+
+# cache
+ccache
+
