@@ -1,4 +1,6 @@
-FROM ros:jazzy-ros-base
+
+# arm64でしか動かない
+FROM ros:jazzy-ros-base 
 
 RUN apt-get update && apt-get upgrade -y && \
 	apt-get install -y \
@@ -10,13 +12,33 @@ RUN apt-get update && apt-get upgrade -y && \
 	tmux \
 	fish \
 	lsof \
+	usbutils\
 	ccache \
 	python3-pip \
 	python3-gpiozero \
 	libboost-system-dev \
-    	ros-jazzy-joy \
-    	ros-jazzy-demo-nodes-cpp && \
+	ros-jazzy-diagnostic-updater\
+	ros-jazzy-laser-proc\
+	ros-jazzy-slam-toolbox\
+	ros-jazzy-rviz2\
+  ros-jazzy-joy \
+  ros-jazzy-demo-nodes-cpp && \
 	rm -rf /var/lib/apt/lists/* # Clean up apt cache
+
+# Working dirを指定しておく
+WORKDIR /root/ros_ws
+
+# 先にCOPYUしないとsrcがない！
+COPY ./ros_ws/src src
+
+
+# package.xmlに依存はかいておくこと
+# ここでrosdepで依存解決
+RUN rosdep update && \
+	rosdep install -i \
+	--from-paths src \
+	--ignore-src \
+	--rosdistro jazzy -y
 	
 
 
@@ -35,6 +57,5 @@ RUN mkdir -p /root/.config/colcon && \
     echo 'source /opt/ros/jazzy/setup.bash' >> /root/.profile
 
 
-WORKDIR /root/ros_ws
 
 CMD ["bash"]

@@ -6,14 +6,8 @@ log/
 .local
 .config
 .bash_history
-<<<<<<< HEAD
 
 
-# Optional local packages (ignored if present)
-# Use leading slash to anchor to repo root
-/ros_ws/src/urg_node2/
-/ros_ws/src/wheel_driver/
-/ros_ws/src/lidar/
-/ros_ws/src/mecanum_controller/
-=======
->>>>>>> parent of 465f162 (fix gitignore that add urg_node2 and wheel_driver)
+# cache
+ccache
+
