@@ -27,7 +27,7 @@ RUN apt-get update && apt-get upgrade -y && \
     	ros-jazzy-demo-nodes-cpp && \
 	rm -rf /var/lib/apt/lists/* # Clean up apt cache
 
-RUN apt-get update && apt-get upgrade -y && \
+RUN apt-get update -y && \
 	sudo rosdep fix-permissions && \
 	rosdep update && \
 	rosdep install -y -i \
