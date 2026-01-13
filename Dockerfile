@@ -2,6 +2,10 @@
 # arm64でしか動かない
 FROM ros:jazzy-ros-base 
 
+WORKDIR /root/ros_ws
+
+COPY ./ros_ws/src ./src
+
 RUN apt-get update && apt-get upgrade -y && \
 	apt-get install -y \
 	git \
@@ -12,34 +16,24 @@ RUN apt-get update && apt-get upgrade -y && \
 	tmux \
 	fish \
 	lsof \
-	usbutils\
+	usbutils \
 	ccache \
 	python3-pip \
 	python3-gpiozero \
 	libboost-system-dev \
-	ros-jazzy-diagnostic-updater\
-	ros-jazzy-laser-proc\
-	ros-jazzy-slam-toolbox\
-	ros-jazzy-rviz2\
-  ros-jazzy-joy \
-  ros-jazzy-demo-nodes-cpp && \
+	ros-jazzy-slam-toolbox \
+	ros-jazzy-rviz2 \
+    	ros-jazzy-joy \
+    	ros-jazzy-demo-nodes-cpp && \
 	rm -rf /var/lib/apt/lists/* # Clean up apt cache
 
-# Working dirを指定しておく
-WORKDIR /root/ros_ws
-
-# 先にCOPYUしないとsrcがない！
-COPY ./ros_ws/src src
-
-
-# package.xmlに依存はかいておくこと
-# ここでrosdepで依存解決
-RUN rosdep update && \
-	rosdep install -i \
+RUN apt-get update -y && \
+	sudo rosdep fix-permissions && \
+	rosdep update && \
+	rosdep install -y -i \
 	--from-paths src \
 	--ignore-src \
-	--rosdistro jazzy -y
-	
+	--rosdistro jazzy 
 
 
 
