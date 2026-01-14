@@ -7,6 +7,9 @@ log/
 .config
 .bash_history
 
+# 以下おそらくtfviewsからダンプされたファイルのため除外しておく
+.gv
+.pdf
 
 # cache
 ccache
