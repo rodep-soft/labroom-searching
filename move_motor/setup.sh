@@ -12,6 +12,13 @@ source ./.venv/bin/activate
 # pyserialをインストール
 pip install pyserial
 
+pip list | grep pyserial > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo "Error: pyserial installation failed."
+    echo "Please check your Python and pip installation."
+    exit 1
+fi
+
 echo "--------------------------------"
 echo "Setup complete"
 echo "If you want to inactivate, run 'deactivate'"
