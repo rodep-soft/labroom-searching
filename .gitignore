@@ -7,6 +7,8 @@ log/
 .config
 .bash_history
 
+.gv
+.pdf
 
 # cache
 ccache
