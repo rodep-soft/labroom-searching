@@ -11,3 +11,6 @@ log/
 # cache
 ccache
 
+# virtual environment
+.venv/
+
