@@ -19,9 +19,6 @@ def send_vel_command(port, m_rpm):
     # rpm制限
     rpm = max(min(m_rpm,330), -330)
 
-    # int -> signed int16
-    rpm_16 = format(rpm & 0xFFFF, '016b')
-
     ser = None
     try:
         # シリアルポートを開く
@@ -30,6 +27,16 @@ def send_vel_command(port, m_rpm):
         # motor IDの1~4までのpacketを作成して送信
         for i in range(1, 5):
             motor_id = i
+            # モーターが逆回転のため-をかける
+            if i in [1, 3]:
+                send_rpm = -rpm
+            else:
+                send_rpm = rpm
+
+            # int -> signed16
+            rpm_16 = format(send_rpm & 0xFFFF, '016b')
+
+            # packet作成
             packet = bytearray([
                 i,                  # DARA[0] - Motor ID
                 0x64,               # DATA[1]
