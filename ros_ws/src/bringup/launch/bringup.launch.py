@@ -18,17 +18,18 @@ def generate_launch_description():
         )
     )
 
+
     slam_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(
                 get_package_share_directory('slam_toolbox'),
                 'launch',
                 'online_async_launch.py',
-                #launch_arguments={
-                #    'use_sim_time':'false'
-                #.items()
             )
-        )
+        ),
+        launch_arguments={
+            'slam_params_file': os.path.join(get_package_share_directory('bringup'),'config','slam_params.yaml'),
+        }.items()
     )
 
     odom_to_base = Node(
