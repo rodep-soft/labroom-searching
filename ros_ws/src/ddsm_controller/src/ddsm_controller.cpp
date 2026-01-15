@@ -22,7 +22,7 @@ DDSMController::DDSMController() : rclcpp::Node("ddsm_controller_node") {
 // calc_crc8 is implemented at the bottom in the helpers section
 
 void DDSMController::declare_parameters() {
-    this->declare_parameter<std::string>("port_name", "/dev/ttyUSB0"); //変更するべき
+    this->declare_parameter<std::string>("port_name", "/dev/ttyACM0"); //変更するべき
     this->declare_parameter<int>("baud_rate", 115200);
     this->declare_parameter<int>("motor_id", 1);
     this->declare_parameter<int>("max_rpm", 200);
