@@ -25,7 +25,7 @@ def send_vel_command(port, m_rpm):
     ser = None
     try:
         # シリアルポートを開く
-        ser = serial.Serial(port, 9600, timeout = 1)
+        ser = serial.Serial(port, 115200, timeout = 1)
 
         # motor IDの1~4までのpacketを作成して送信
         for i in range(1, 5):
