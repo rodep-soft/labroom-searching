@@ -10,7 +10,7 @@
 # 複数台あるとコリジョンする
 # USBアダプタのLED(TX/RX)が光らなかったら遅れてない(他のスクリプトでも言えるが)
 
-PORT="/dev/ttyUSB0"
+PORT="/dev/ttyACM0"
 BAUD="115200"
 
 # port config
