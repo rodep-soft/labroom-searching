@@ -6,13 +6,60 @@
 #include <termios.h>
 #include <stdint.h>
 
-/*
- シリアルポートを初期化する関数
- 成功時はファイルディスクリプタ、失敗時は -1
- */
+// CRC-8/MAXIM 計算
+uint8_t calc_crc8_maxim(uint8_t *data, int len) {
+    uint8_t crc = 0x00;
+    for (int i = 0; i < len; i++) {
+        crc ^= data[i]; // データの各バイトと現在のCRC値をXOR
+        for (int j = 0; j < 8; j++) {
+            if (crc & 0x01) {
+                // 最下位ビットが1なら、右シフトして多項式 0x8C とXOR
+                crc = (crc >> 1) ^ 0x8C;
+            } else {
+                // 0なら、そのまま右シフト
+                crc >>= 1;
+            }
+        }
+    }
+    return crc;
+}
+
+// packet作成
+void create_vel_packet(uint8_t *packet, uint8_t motor_id, int m_rpm) {
+    int rpm = m_rpm;
+    if (rpm > 330) rpm = 330;
+    if (rpm < -330) rpm = -330;
+
+    // ID 1, 3 の場合は逆回転させる処理
+    int send_rpm;
+    if (motor_id == 1 || motor_id == 3) {
+        send_rpm = -rpm;
+    } else {
+        send_rpm = rpm;
+    }
+
+    // packet作成
+    packet[0] = motor_id;                  // DATA[0]: モータID
+    packet[1] = 0x64;                       // DATA[1]: 速度制御コマンド
+    packet[2] = (uint8_t)(send_rpm >> 8);   // DATA[2]: 速度上位8ビット
+    packet[3] = (uint8_t)(send_rpm & 0xFF); // DATA[3]: 速度下位8ビット
+    packet[4] = 0x00;                       // DATA[4]: 固定
+    packet[5] = 0x00;                       // DATA[5]: 固定
+    packet[6] = 0x00;                       // DATA[6]: 加速時間(デフォルト0)
+    packet[7] = 0x00;                       // DATA[7]: ブレーキ(デフォルト0)
+    packet[8] = 0x00;                       // DATA[8]: 固定
+    
+    // CRC計算と格納
+    packet[9] = calc_crc8_maxim(packet, 9);
+}
+
+
+
+// シリアルポートを初期化する関数
+// 成功時はファイルディスクリプタ、失敗時は -1
 int init_serial(const char *device) {
-    // O_RDWR: 読み書き両用, O_NOCTTY: 制御端末にしない, O_NDELAY: 非ブロックモード
-    int fd = open(device, O_RDWR | O_NOCTTY | O_NDELAY);
+    // O_RDWR: 読み書き両用, O_NOCTTY: 制御端末にしない, O_SYNC: 同期モード
+    int fd = open(device, O_RDWR | O_NOCTTY | O_SYNC);
     if (fd == -1) {
         perror("シリアルポートを開けませんでした");
         return -1;
@@ -50,11 +97,11 @@ int init_serial(const char *device) {
     options.c_oflag &= ~OPOST;
 
     // --- 制御文字 (c_cc) の設定 ---
-    // 非ブロック読み取りのためにVMIN=0, VTIME=0に設定
-    options.c_cc[VMIN] = 0;   // 最小受信バイト数
-    options.c_cc[VTIME] = 0;  // タイムアウト（10ms単位）
+    // ブロック読み取り: 10バイト受信するか5秒でタイムアウト
+    options.c_cc[VMIN] = 10;   // 10バイト受信するまで待機
+    options.c_cc[VTIME] = 50;  // タイムアウト5秒（0.1s×50）
 
-    // 設定を即座に反映させる
+    // 設定を即座に反映
     if (tcsetattr(fd, TCSANOW, &options) != 0) {  // エラーチェック追加
         perror("ターミナル設定の適用に失敗しました");
         close(fd);
@@ -63,11 +110,9 @@ int init_serial(const char *device) {
 
     return fd;
 }
-/*
- DDSMにデータを送信する関数
- 引数: ファイルディスクリプタ, 送信データ配列
- 戻り値: 送信バイト数、失敗時は -1
- */
+// データを送信する関数
+// 引数: ファイルディスクリプタ, 送信データ配列
+// 戻り値: 送信バイト数、失敗時は -1
 int send_ddsm_data(int fd, uint8_t data[10]) {
     if (fd < 0) return -1;
 
@@ -85,11 +130,9 @@ int send_ddsm_data(int fd, uint8_t data[10]) {
     return bytes_written;
 }
 
-/*
- DDSMからのレスポンスを受信する関数
- 引数: ファイルディスクリプタ, 受信バッファ, バッファサイズ
- 戻り値: 受信バイト数
- */
+// レスポンスを受信する関数
+// 引数: ファイルディスクリプタ, 受信バッファ, バッファサイズ
+// 戻り値: 受信バイト数
 int receive_ddsm_data(int fd, uint8_t *buffer, int size) {
     if (fd < 0 || buffer == NULL) return -1;
 
@@ -111,7 +154,19 @@ int receive_ddsm_data(int fd, uint8_t *buffer, int size) {
     return bytes_read;
 }
 
-int main() {
+int main(int argc, char *argv[]) {
+    // RPM引数の取得（指定がなければ500）
+    int target_rpm = 500;
+    if (argc > 1) {
+        char *endptr = NULL;
+        long val = strtol(argv[1], &endptr, 10);
+        if (endptr == argv[1] || *endptr != '\0') {
+            fprintf(stderr, "RPMは整数で指定してください\n");
+            return 1;
+        }
+        target_rpm = (int)val;
+    }
+
     // ポートの初期化
     const char *device = "/dev/ttyACM0";
     int fd = init_serial(device);
@@ -119,10 +174,17 @@ int main() {
         fprintf(stderr, "ポートの初期化に失敗しました\n");
         return 1;
     }
-    printf("ポートの初期化成功\n\n");
+    printf("ポートの初期化成功 (RPM=%d)\n\n", target_rpm);
 
-    // 送信データの準備
-    uint8_t command[10] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A};
+    // 送信コマンドの準備（ID=1, 入力RPM）
+    uint8_t command[10];
+    create_vel_packet(command, 0x01, target_rpm);
+
+    printf("送信パケット: ");
+    for (int i = 0; i < 10; i++) {
+        printf("0x%02X ", command[i]);
+    }
+    printf("\n");
 
     // データの送信
     printf("データを送信します...\n");
@@ -133,13 +195,20 @@ int main() {
         return 1;
     }
 
-    // レスポンスを待機（最大500ms）
-    printf("\nレスポンスを待機中...\n");
-    usleep(500000);  // 500ms待機
-
-    // データを受信
+    // レスポンスを待機（VMIN/VTIMEで自動待機）
+    printf("\nデータを受信します...\n");
     uint8_t response[256];
     int received = receive_ddsm_data(fd, response, sizeof(response));
+
+    // 受信データのCRCをチェック
+    if (received == 10) {
+        uint8_t cal_crc = calc_crc8_maxim(response, 9);
+        if (cal_crc == response[9]) {
+            printf("✓ CRCチェック成功\n");
+        } else {
+            printf("✗ CRCチェック失敗（計算: 0x%02X, 受信: 0x%02X）\n", cal_crc, response[9]);
+        }
+    }
 
     // ポートを閉じる
     close(fd);
