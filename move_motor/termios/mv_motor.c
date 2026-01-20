@@ -19,7 +19,7 @@ int init_serial(const char *device) {
     }
 
     struct termios options;
-    if (tcgetattr(fd, &options) != 0) {  // エラーチェック追加
+    if (tcgetattr(fd, &options) != 0) {
         perror("ターミナル設定の取得に失敗しました");
         close(fd);
         return -1;
@@ -30,7 +30,7 @@ int init_serial(const char *device) {
     cfsetospeed(&options, B115200); //output
 
     // --- 制御フラグ (c_cflag) の設定 ---
-    options.c_cflag |= (CLOCAL | CREAD); // デバイスとして認識して、受信を可能にする
+    options.c_cflag |= (CLOCAL | CREAD); // デバイスとして認識して、受信を可能に
     options.c_cflag &= ~PARENB;          // パリティビットなし
     options.c_cflag &= ~CSTOPB;          // ストップビットを1ビットに設定
     options.c_cflag &= ~CSIZE;           // データサイズ指定をマスク
@@ -111,13 +111,9 @@ int receive_ddsm_data(int fd, uint8_t *buffer, int size) {
     return bytes_read;
 }
 
-int main(int argc, char *argv[]) {
-    // デバイスパスの取得（引数なしの場合はデフォルト値）
-    const char *device = (argc > 1) ? argv[1] : "/dev/ttyACM0";
-
-    printf("使用デバイス: %s\n", device);
-
-    // 1. ポートの初期化
+int main() {
+    // ポートの初期化
+    const char *device = "/dev/ttyACM0";
     int fd = init_serial(device);
     if (fd < 0) {
         fprintf(stderr, "ポートの初期化に失敗しました\n");
@@ -125,11 +121,10 @@ int main(int argc, char *argv[]) {
     }
     printf("ポートの初期化成功\n\n");
 
-    // 2. 送信データの準備 (DDSMのプロトコルに合わせて値を変更してください)
-    // 例として10個のデータを配列に格納
+    // 送信データの準備
     uint8_t command[10] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A};
 
-    // 3. データの送信
+    // データの送信
     printf("データを送信します...\n");
     int result = send_ddsm_data(fd, command);
     if (result < 0) {
@@ -138,15 +133,15 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    // 4. レスポンスを待機（最大500ms）
+    // レスポンスを待機（最大500ms）
     printf("\nレスポンスを待機中...\n");
     usleep(500000);  // 500ms待機
 
-    // 5. データを受信
+    // データを受信
     uint8_t response[256];
     int received = receive_ddsm_data(fd, response, sizeof(response));
 
-    // 6. ポートを閉じる
+    // ポートを閉じる
     close(fd);
     printf("\nポートをクローズしました\n");
     printf("通信を終了しました\n");
