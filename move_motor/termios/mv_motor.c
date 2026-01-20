@@ -41,12 +41,12 @@ void create_vel_packet(uint8_t *packet, uint8_t motor_id, int m_rpm) {
     // packet作成
     packet[0] = motor_id;                  // DATA[0]: モータID
     packet[1] = 0x64;                       // DATA[1]: 速度制御コマンド
-    packet[2] = (uint8_t)(send_rpm >> 8);   // DATA[2]: 速度上位8ビット
-    packet[3] = (uint8_t)(send_rpm & 0xFF); // DATA[3]: 速度下位8ビット
+    packet[2] = (uint16_t)(send_rpm >> 8);   // DATA[2]: 速度上位8ビット
+    packet[3] = (uint16_t)(send_rpm & 0xFF); // DATA[3]: 速度下位8ビット
     packet[4] = 0x00;                       // DATA[4]: 固定
     packet[5] = 0x00;                       // DATA[5]: 固定
-    packet[6] = 0x00;                       // DATA[6]: 加速時間(デフォルト0)
-    packet[7] = 0x00;                       // DATA[7]: ブレーキ(デフォルト0)
+    packet[6] = 0x00;                       // DATA[6]: 加速時間
+    packet[7] = 0x00;                       // DATA[7]: ブレーキ時間
     packet[8] = 0x00;                       // DATA[8]: 固定
     
     // CRC計算と格納
@@ -154,17 +154,43 @@ int receive_ddsm_data(int fd, uint8_t *buffer, int size) {
     return bytes_read;
 }
 
-int main(int argc, char *argv[]) {
-    // RPM引数の取得（指定がなければ500）
-    int target_rpm = 500;
+// コマンドライン引数をパースして motor_id と target_rpm を取得
+// 戻り値: 成功時は0、失敗時は1
+int parse_arguments(int argc, char *argv[], uint8_t *motor_id, int *target_rpm) {
+    // Motor ID引数の取得（デフォルト: 1）
+    *motor_id = 1;
     if (argc > 1) {
         char *endptr = NULL;
         long val = strtol(argv[1], &endptr, 10);
-        if (endptr == argv[1] || *endptr != '\0') {
+        if (endptr == argv[1] || *endptr != '\0' || val < 1 || val > 4) {
+            fprintf(stderr, "Motor IDは1から4の整数で指定してください\n");
+            return 1;
+        }
+        *motor_id = (uint8_t)val;
+    }
+    
+    // RPM引数の取得（デフォルト: 0）
+    *target_rpm = 0;
+    if (argc > 2) {
+        char *endptr = NULL;
+        long val = strtol(argv[2], &endptr, 10);
+        if (endptr == argv[2] || *endptr != '\0') {
             fprintf(stderr, "RPMは整数で指定してください\n");
             return 1;
         }
-        target_rpm = (int)val;
+        *target_rpm = (int)val;
+    }
+    
+    return 0;
+}
+
+int main(int argc, char *argv[]) {
+    uint8_t motor_id;
+    int target_rpm;
+    
+    // 引数パース
+    if (parse_arguments(argc, argv, &motor_id, &target_rpm) != 0) {
+        return 1;
     }
 
     // ポートの初期化
@@ -174,11 +200,11 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "ポートの初期化に失敗しました\n");
         return 1;
     }
-    printf("ポートの初期化成功 (RPM=%d)\n\n", target_rpm);
+    printf("ポートの初期化成功 (Motor ID=%d, RPM=%d)\n\n", motor_id, target_rpm);
 
-    // 送信コマンドの準備（ID=1, 入力RPM）
+    // 送信コマンドの準備
     uint8_t command[10];
-    create_vel_packet(command, 0x01, target_rpm);
+    create_vel_packet(command, motor_id, target_rpm);
 
     printf("送信パケット: ");
     for (int i = 0; i < 10; i++) {
@@ -204,9 +230,9 @@ int main(int argc, char *argv[]) {
     if (received == 10) {
         uint8_t cal_crc = calc_crc8_maxim(response, 9);
         if (cal_crc == response[9]) {
-            printf("✓ CRCチェック成功\n");
+            printf("CRCチェック成功\n");
         } else {
-            printf("✗ CRCチェック失敗（計算: 0x%02X, 受信: 0x%02X）\n", cal_crc, response[9]);
+            printf("CRCチェック失敗（計算: 0x%02X, 受信: 0x%02X）\n", cal_crc, response[9]);
         }
     }
 
