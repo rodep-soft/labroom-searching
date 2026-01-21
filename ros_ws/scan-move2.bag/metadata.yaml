@@ -1,0 +1,72 @@
+rosbag2_bagfile_information:
+  version: 9
+  storage_identifier: mcap
+  duration:
+    nanoseconds: 62408749368
+  starting_time:
+    nanoseconds_since_epoch: 1768985606385903616
+  message_count: 2492
+  topics_with_message_count:
+    - topic_metadata:
+        name: /scan
+        type: sensor_msgs/msg/LaserScan
+        serialization_format: cdr
+        offered_qos_profiles:
+          - history: unknown
+            depth: 0
+            reliability: reliable
+            durability: volatile
+            deadline:
+              sec: 9223372036
+              nsec: 854775807
+            lifespan:
+              sec: 9223372036
+              nsec: 854775807
+            liveliness: automatic
+            liveliness_lease_duration:
+              sec: 9223372036
+              nsec: 854775807
+            avoid_ros_namespace_conventions: false
+        type_description_hash: RIHS01_64c191398013af96509d518dac71d5164f9382553fce5c1f8cca5be7924bd828
+      message_count: 2492
+  compression_format: ""
+  compression_mode: ""
+  relative_file_paths:
+    - scan-move2.bag_0.mcap
+    - scan-move2.bag_1.mcap
+    - scan-move2.bag_2.mcap
+    - scan-move2.bag_3.mcap
+    - scan-move2.bag_4.mcap
+  files:
+    - path: scan-move2.bag_0.mcap
+      starting_time:
+        nanoseconds_since_epoch: 1768985606385903616
+      duration:
+        nanoseconds: 14983808783
+      message_count: 599
+    - path: scan-move2.bag_1.mcap
+      starting_time:
+        nanoseconds_since_epoch: 1768985621394713369
+      duration:
+        nanoseconds: 14979957769
+      message_count: 599
+    - path: scan-move2.bag_2.mcap
+      starting_time:
+        nanoseconds_since_epoch: 1768985636399619514
+      duration:
+        nanoseconds: 14986913182
+      message_count: 599
+    - path: scan-move2.bag_3.mcap
+      starting_time:
+        nanoseconds_since_epoch: 1768985651410581628
+      duration:
+        nanoseconds: 14976925362
+      message_count: 599
+    - path: scan-move2.bag_4.mcap
+      starting_time:
+        nanoseconds_since_epoch: 1768985666412446751
+      duration:
+        nanoseconds: 2382206233
+      message_count: 96
+  custom_data: ~
+  ros_distro: jazzy
