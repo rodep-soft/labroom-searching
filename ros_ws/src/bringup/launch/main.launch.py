@@ -32,11 +32,6 @@ def generate_launch_description():
         }.items()
     )
 
-    odom_to_base = Node(
-        package='tf2_ros',
-        executable='static_transform_publisher',
-        arguments=['0', '0', '0', '0', '0', '0', 'odom', 'base_link']
-    )
 
     base_to_laser = Node(
         package='tf2_ros',
@@ -48,7 +43,6 @@ def generate_launch_description():
 
     return LaunchDescription([
         urg_launch,
-        odom_to_base,
         base_to_laser,
         slam_launch
     ])

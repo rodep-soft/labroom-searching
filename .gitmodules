@@ -1,0 +1,3 @@
+[submodule "ros_ws/src/Simple_2D_Lidar_Odometry"]
+	path = ros_ws/src/Simple_2D_Lidar_Odometry
+	url = https://github.com/dawan0111/Simple-2D-LiDAR-Odometry.git
