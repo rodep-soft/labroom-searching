@@ -1,13 +1,13 @@
 slam_toolbox:
   ros__parameters:
-    use_sim_time: false
-    odom_frame: base_link
+    use_sim_time: true
+    odom_frame: odom
     map_frame: map
-    odom_frame: base_link
-    use_odom: false
+    use_odom: true
     base_frame: base_link
     publish_tf_map: true
     resolution: 0.05
     scan_topic: scan
+    odom_topic: odom_rf2o 
     mode: mapping
     minimum_travel_distance: 0.05
