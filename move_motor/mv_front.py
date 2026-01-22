@@ -1,3 +1,4 @@
+# タイヤがmotor id 1,3で逆回転した
 import serial
 import sys
 import time
