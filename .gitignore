@@ -13,3 +13,5 @@ log/
 # cache
 ccache
 
+.venv/
+
