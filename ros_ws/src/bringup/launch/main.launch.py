@@ -40,16 +40,16 @@ def generate_launch_description():
                 'rf2o_laser_odometry.launch.py',
             )
         ),
-        #launch_arguments={
-        #    'use_sim_time': 'true',
-        #}.items()
+        launch_arguments={
+            'use_sim_time': 'true',
+        }.items()
     )
 
     base_to_laser = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
         arguments=['0', '0', '0', '0', '0', '0', 'base_link', 'laser'],
-        #parameters=[{'use_sim_time': True}]
+        parameters=[{'use_sim_time': True}]
     )
 
 
@@ -57,14 +57,22 @@ def generate_launch_description():
         package='tf2_ros',
         executable='static_transform_publisher',
         arguments=['0', '0', '0', '0', '0', '0', 'odom', 'base_link'],
-        #parameters=[{'use_sim_time': True}]
+        parameters=[{'use_sim_time': True}]
     )
- 
+
+    map_to_odom = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        arguments=['0', '0', '0', '0', '0', '0', 'map', 'odom'],
+        parameters=[{'use_sim_time': True}]
+    )
+
     return LaunchDescription([
         urg_launch,
         base_to_laser,
         slam_launch,
         odom_launch,
 #        odom_to_base,
+#        map_to_odom,
     ])
 
