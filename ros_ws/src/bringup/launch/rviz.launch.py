@@ -11,7 +11,7 @@ def generate_launch_description():
         package='rviz2',
         executable='rviz2',
         output='screen',
-        arguments=['-d', os.path.join(get_package_share_directory('bringup'),'config','rviz2_config.rviz')],
+        arguments=['-d', os.path.join(get_package_share_directory('bringup'),'config','rviz2_config_odom.rviz')],
         parameters=[{'use_sim_time':False}]
     )
 
