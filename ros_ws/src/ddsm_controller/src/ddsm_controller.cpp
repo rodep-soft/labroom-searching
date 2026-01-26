@@ -12,7 +12,7 @@ DDSMController::DDSMController() : rclcpp::Node("ddsm_controller_node") {
     
     motor_vel_publisher_ = this->create_publisher<std_msgs::msg::Float64>("motor_vel_feedback", 10);
 
-    setup_serial_port(serial_port_name_, static_cast<unsigned int>(baud_rate_));
+    setup_serial_port(port_name_, static_cast<unsigned int>(baud_rate_));
 
     timer_ = this->create_wall_timer(
         std::chrono::milliseconds(200),
@@ -22,17 +22,17 @@ DDSMController::DDSMController() : rclcpp::Node("ddsm_controller_node") {
 // calc_crc8 is implemented at the bottom in the helpers section
 
 void DDSMController::declare_parameters() {
-    this->declare_parameter<std::string>("port_name", "/dev/ttyUSB0"); //変更するべき
+    this->declare_parameter<std::string>("port_name", "/dev/ttyACM0"); //変更するべき
     this->declare_parameter<int>("baud_rate", 115200);
     this->declare_parameter<int>("motor_id", 1);
     this->declare_parameter<int>("max_rpm", 200);
 }
 
 void DDSMController::get_parameters() {
-    std::string port_name_ = this->get_parameter("port_name").as_string();
-    int baud_rate_ = this->get_parameter("baud_rate").as_int();
-    int motor_id_ = this->get_parameter("motor_id").as_int();
-    int max_rpm_ = this->get_parameter("max_rpm").as_int();
+    port_name_ = this->get_parameter("port_name").as_string();
+    baud_rate_ = this->get_parameter("baud_rate").as_int();
+    motor_id_ = this->get_parameter("motor_id").as_int();
+    max_rpm_ = this->get_parameter("max_rpm").as_int();
 }
 
 bool DDSMController::setup_serial_port(const std::string& port_name, unsigned int baud_rate) {
