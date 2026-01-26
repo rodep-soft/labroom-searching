@@ -9,7 +9,7 @@ log/
 
 .gv
 .pdf
-
+.mcap
 # cache
 ccache
 
