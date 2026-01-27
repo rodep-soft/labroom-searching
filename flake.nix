@@ -12,15 +12,18 @@
     nixpkgs.follows = "nix-ros-overlay/nixpkgs";
     
     flake-utils.url = "github:numtide/flake-utils";
+
+    nixgl.url = "github:nix-community/nixGL";
   };
 
-  outputs = { self, nixpkgs, nix-ros-overlay, flake-utils, ... }:
+  outputs = { self, nixpkgs, nix-ros-overlay, flake-utils, nixgl, ... }:
     flake-utils.lib.eachSystem [ "aarch64-linux" "x86_64-linux" ] (system:
       let
         pkgs = import nixpkgs {
           inherit system;
           overlays = [ 
             nix-ros-overlay.overlays.default
+            nixgl.overlay
           ];
           config.allowUnfree = true;
         };
@@ -76,6 +79,9 @@
             pkgs.vim
             pkgs.tmux
             pkgs.fzf
+
+            pkgs.nixgl.auto.nixGLDefault
+
             (pkgs.python3.withPackages (ps: [ 
               ps.gpiozero 
               ps.pip
@@ -83,6 +89,9 @@
           ];
 
           shellHook = ''
+
+            alias rviz2="nixGL rviz2"
+
             export CCACHE_DIR=$HOME/.ccache
             export PATH="${pkgs.ccache}/bin:$PATH"
             if [ ! -f $HOME/.config/colcon/defaults.yaml ]; then

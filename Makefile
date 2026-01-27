@@ -1,3 +1,7 @@
+.PHONY: dev setup mark sync alter
+
+dev:
+	nix develop --impure
 
 setup:
 	git config merge.ours.driver true
@@ -14,3 +18,5 @@ alter:
 
 restore:
 	sed -i 's/osrf\/ros:jazzy-desktop-full/ros:jazzy-ros-base/g' Dockerfile
+
+
