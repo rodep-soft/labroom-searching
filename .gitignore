@@ -8,8 +8,13 @@ log/
 .bash_history
 
 
-# Optional local packages (ignored if present)
-# Use leading slash to anchor to repo root
-/ros_ws/src/urg_node2/
-/ros_ws/src/wheel_driver/
-/ros_ws/src/lidar/
+# 以下おそらくtfviewsからダンプされたファイルのため除外しておく
+.gv
+.pdf
+
+# cache
+ccache
+
+
+.venv/
+

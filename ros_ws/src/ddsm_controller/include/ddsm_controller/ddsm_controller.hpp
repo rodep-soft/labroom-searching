@@ -26,14 +26,15 @@ class DDSMController : public rclcpp::Node {
         boost::asio::serial_port serial_port_{io_context_};
 
         // ROS interfaces
-        rclcpp::Subscription<std_msgs::msg::Float64>::SharedPtr velocity_subscription_;
-        rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr velocity_publisher_;
+        rclcpp::Subscription<std_msgs::msg::Float64>::SharedPtr motor_vel_subscription_;
+        rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr motor_vel_publisher_;
         rclcpp::TimerBase::SharedPtr timer_;
 
         // Parameters
-        std::string serial_port_name_;
-        int baud_rate_{};
-        int motor_id_{};
+        std::string port_name_;
+        int baud_rate_;
+        int motor_id_;
+	    int max_rpm_;
 
         // Param helpers
         void declare_parameters();

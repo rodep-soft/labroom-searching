@@ -1,16 +1,18 @@
 #include "ddsm_controller/ddsm_controller.hpp"
 #include <chrono>
+#include <thread>
 #include <unistd.h>
+
 DDSMController::DDSMController() : rclcpp::Node("ddsm_controller_node") {
     declare_parameters();
     get_parameters();
 
     motor_vel_subscription_ = this->create_subscription<std_msgs::msg::Float64>(
-        "/cmd_vel", 10, std::bind(&DDSMController::velocity_callback, this, std::placeholders::_1));
+        "/motor_vel_rpm", 10, std::bind(&DDSMController::velocity_callback, this, std::placeholders::_1));
     
     motor_vel_publisher_ = this->create_publisher<std_msgs::msg::Float64>("motor_vel_feedback", 10);
 
-    setup_serial_port(serial_port_name_, static_cast<unsigned int>(baud_rate_));
+    setup_serial_port(port_name_, static_cast<unsigned int>(baud_rate_));
 
     timer_ = this->create_wall_timer(
         std::chrono::milliseconds(200),
@@ -20,29 +22,17 @@ DDSMController::DDSMController() : rclcpp::Node("ddsm_controller_node") {
 // calc_crc8 is implemented at the bottom in the helpers section
 
 void DDSMController::declare_parameters() {
-    this->declare_parameter<std::string>("port_name", "/dev/ttyUSB0"); //変更するべき
+    this->declare_parameter<std::string>("port_name", "/dev/ttyACM0"); //変更するべき
     this->declare_parameter<int>("baud_rate", 115200);
     this->declare_parameter<int>("motor_id", 1);
+    this->declare_parameter<int>("max_rpm", 200);
 }
 
 void DDSMController::get_parameters() {
-    serial_port_name_ = this->get_parameter("port_name").as_string();
+    port_name_ = this->get_parameter("port_name").as_string();
     baud_rate_ = this->get_parameter("baud_rate").as_int();
-
-    // Allow motor_id to be provided either as an int (e.g., 1) or a hex string (e.g., "0x01").
-    const auto motor_param = this->get_parameter("motor_id");
-    if (motor_param.get_type() == rclcpp::ParameterType::PARAMETER_STRING) {
-        try {
-            motor_id_ = std::stoi(motor_param.as_string(), nullptr, 0); // base 0 lets 0x.. be parsed
-        } catch (const std::exception &e) {
-            RCLCPP_WARN(this->get_logger(), "Failed to parse motor_id as hex/int, fallback to 1: %s", e.what());
-            motor_id_ = 1;
-        }
-    } else {
-        motor_id_ = motor_param.as_int();
-    }
-
-    RCLCPP_INFO(this->get_logger(), "Params -> port: %s, baud: %d, motor_id: 0x%02X", serial_port_name_.c_str(), baud_rate_, motor_id_);
+    motor_id_ = this->get_parameter("motor_id").as_int();
+    max_rpm_ = this->get_parameter("max_rpm").as_int();
 }
 
 bool DDSMController::setup_serial_port(const std::string& port_name, unsigned int baud_rate) {
@@ -106,7 +96,7 @@ void DDSMController::request_and_receive_feedback() {
     // 送信
     try {
         boost::asio::write(serial_port_, boost::asio::buffer(request));
-        usleep(1000);  // 1ms待機 変更したほうがいい
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));  // 1ms待機 変更したほうがいい
     } catch (const boost::system::system_error& e) {
         RCLCPP_ERROR(this->get_logger(), "Boost Asio Write failed: %s", e.what());
         return;
@@ -160,7 +150,7 @@ uint8_t DDSMController::calc_crc8(const std::vector<uint8_t>& data) {
 std::vector<uint8_t> DDSMController::create_velocity_command(double target_velocity) {
     // Example: motor_id, CMD_VELOCITY, vel_l, vel_h, 0x00, 0x00, crc
     // Scale velocity to int16 (e.g., m/s * 1000)
-    int16_t vel = static_cast<int16_t>(target_velocity * 1000.0);
+    int16_t vel = static_cast<int16_t>(target_velocity * max_rpm_);
     std::vector<uint8_t> frame;
     frame.reserve(7);
     frame.push_back(static_cast<uint8_t>(motor_id_));
