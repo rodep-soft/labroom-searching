@@ -1,19 +1,14 @@
 {
   description = "ROS 2 Jazzy environment (Cached)";
 
-  # キャッシュ設定（ここはさっきのままでOK）
   nixConfig = {
     extra-substituters = [ "https://ros.cachix.org" ];
     extra-trusted-public-keys = [ "ros.cachix.org-1:dSyZxI8geDCJGTgbewUGQlTNhdxtaVF8s8jBuWZz/pM=" ];
   };
 
   inputs = {
-    # ROS Overlayをマスターに
     nix-ros-overlay.url = "github:lopsided98/nix-ros-overlay/master";
 
-    # 【最重要】nixpkgsをオーバーレイのものに強制同期させる
-    # これにより "Stable 24.11" ではなく "Unstable" になりますが、
-    # ROSのバイナリキャッシュを使うための必須条件です。
     nixpkgs.follows = "nix-ros-overlay/nixpkgs";
     
     flake-utils.url = "github:numtide/flake-utils";
@@ -34,12 +29,14 @@
 
         myRosWorkspace = rosDistro.buildEnv {
           paths = [
+            # --- 基本セット ---
             rosDistro.ros-base
             rosDistro.slam-toolbox
             rosDistro.rviz2
             rosDistro.joy
             rosDistro.demo-nodes-cpp
             
+            # --- 依存関係 ---
             rosDistro.sensor-msgs
             rosDistro.geometry-msgs
             rosDistro.nav-msgs
@@ -48,7 +45,20 @@
             rosDistro.tf2-ros
             rosDistro.tf2-geometry-msgs
             rosDistro.eigen3-cmake-module
+            
             rosDistro.ament-cmake
+            rosDistro.ament-cmake-core  
+            #rosDistro.ament-cmake-cpp
+            rosDistro.ament-cmake-ros
+            rosDistro.ament-cmake-test
+            rosDistro.ament-lint-auto
+            rosDistro.ament-lint-common
+            
+            rosDistro.rosidl-default-generators
+            rosDistro.rosidl-default-runtime
+            rosDistro.diagnostic-updater
+            rosDistro.diagnostic-msgs
+            rosDistro.laser-proc
           ];
         };
 
