@@ -1,0 +1,40 @@
+#include <iostream>
+#include <fcntl.c>
+#include <unistd.h>
+#include <licux/joystick.h>
+#include <vector>
+
+int main(){
+    // open()でデバイスを開く
+    const char* device = "/dev/input/js0";
+    int fd = open(device, O_NONBLOCK);
+
+    if(fd < 0){
+      std::cerr << "デバイスを開けませんでした"　<< std::endl;
+      return 1;
+    }
+
+    // ioctcl()でバージョン確認
+    int version = 0;
+    if(ioctl(fd, JSIOGCVERSION, &version)){
+      std::cerr << "バージョンが対応してません : " << version << std::endl;
+      close(fd);
+      return 1;
+    }
+
+    std::cout << "Driver version : " << (version >> 16) << << "."
+        << ((version >> 8) & 0xFF) << "." << (version & 0xFF)<< std::endl
+  
+    // 名前を取得
+    char name[128];
+    if(ioctl(fd, JSIOCGNAME(sizeof(name)), name) < 0) {
+        std::cout <<"名前を取得できませんでした" << std::endl;
+    } else{
+        std::cout << "Joystick Name : " << name << std::endl:
+    }
+
+    std::cout << "---終了---" << std::endl;
+    
+
+    return 0;
+  }
