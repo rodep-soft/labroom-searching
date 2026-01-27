@@ -68,7 +68,7 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        urg_launch,
+#        urg_launch,
         base_to_laser,
         slam_launch,
         odom_launch,

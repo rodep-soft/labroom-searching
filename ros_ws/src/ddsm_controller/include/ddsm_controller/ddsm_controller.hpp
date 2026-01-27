@@ -34,7 +34,7 @@ class DDSMController : public rclcpp::Node {
         std::string port_name_;
         int baud_rate_;
         int motor_id_;
-	int max_rpm_;
+	    int max_rpm_;
 
         // Param helpers
         void declare_parameters();
