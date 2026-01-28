@@ -17,8 +17,16 @@ int main(){
 
   // ボタンと軸の数を取得
   __u8 num_axes, num_buttons;
-  ioctl(joy_fd, JSIOCGAXES, &num_axes);
-  ioctl(joy_fd, JSIOCGBUTTONS, &num_buttons);
+  if(ioctl(joy_fd, JSIOCGAXES, &num_axes) < 0){
+    std::cerr << "軸数の取得失敗" << std::endl;
+    close(joy_fd);
+    return 1;
+  }
+  if(ioctl(joy_fd, JSIOCGBUTTONS, &num_buttons) < 0){
+    std::cerr << "ボタン数の取得失敗" << std::endl;
+    close(joy_fd);
+    return 1;
+  }
   
   // 状態・値を保存するベクトル
   std::vector<int> axes_values(num_axes, 0);
@@ -30,13 +38,24 @@ int main(){
     bool updated = false;
 
     while(read(joy_fd, &e, sizeof(e)) > 0){
+      // 初期化イベントはスキップ
+      if(e.type & JS_EVENT_INIT) continue;
+
       updated = true;
 
       // 値をベクトルに格納
       if(e.type & JS_EVENT_BUTTON){
-        if(e.number < num_buttons) button_values[e.number] = e.value;
+        if(e.number < num_buttons){
+          button_values[e.number] = e.value;
+        } else {
+          std::cerr << "警告: 不正なボタン番号 " << (int)e.number << std::endl;
+        }
       } else if(e.type & JS_EVENT_AXIS) {
-        if(e.number < num_axes) axes_values[e.number] = e.value;
+        if(e.number < num_axes){
+          axes_values[e.number] = e.value;
+        } else {
+          std::cerr << "警告: 不正な軸番号 " << (int)e.number << std::endl;
+        }
       }
     }
 
@@ -59,7 +78,7 @@ int main(){
       std::cout << "]" << std::endl;
     }
 
-    usleep(1000);
+    usleep(10000);
   }
 
   close(joy_fd);
