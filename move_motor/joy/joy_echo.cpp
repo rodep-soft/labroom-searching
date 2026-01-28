@@ -53,6 +53,10 @@ int main(){
       } else if(e.type & JS_EVENT_AXIS) {
         if(e.number < num_axes){
           axes_values[e.number] = e.value;
+
+          // int nomalized_value = static_cast<int>(
+          //     (static_cast<double>(e.value) / 32767.0));
+          // axes_values[e.number] = nomalized_value;
         } else {
           std::cerr << "警告: 不正な軸番号 " << (int)e.number << std::endl;
         }

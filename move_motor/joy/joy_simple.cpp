@@ -6,7 +6,7 @@
 #include <stdbool.h>
 
 int main(void) {
-    //ノンブロッキングモードでジョイスティックデバイスを開く
+    // ノンブロッキングモードでジョイスティックデバイスを開く
     const char *device = "/dev/input/js0";
     int fd = open(device, O_RDONLY | O_NONBLOCK);
 
