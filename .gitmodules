@@ -1,0 +1,3 @@
+[submodule "ros_ws/src/rf2o_laser_odometry"]
+	path = ros_ws/src/rf2o_laser_odometry
+	url = https://github.com/MAPIRlab/rf2o_laser_odometry.git

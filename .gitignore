@@ -11,7 +11,7 @@ log/
 # 以下おそらくtfviewsからダンプされたファイルのため除外しておく
 .gv
 .pdf
-
+.mcap
 # cache
 ccache
 
