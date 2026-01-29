@@ -6,6 +6,9 @@
 #include <termios.h>
 #include <stdint.h>
 
+// 共通メモリヘッダー
+#include "common.h"
+
 // CRC-8/MAXIM 計算
 uint8_t calc_crc8_maxim(uint8_t *data, int len) {
     uint8_t crc = 0x00;
@@ -90,7 +93,7 @@ int init_serial(const char *device) {
     return fd;
 }
 
-int main(int argc, char *argv[]) {
+int main() {
     if (argc < 2) {
         printf("使用法: %s <RPM>\n", argv[0]);
         printf("例: %s 30  (全輪 30rpm で回転)\n", argv[0]);
@@ -98,7 +101,7 @@ int main(int argc, char *argv[]) {
     }
 
     int target_rpm = atoi(argv[1]);
-    const char *device = "/dev/ttyACM0";
+    const char *device = "/dev/ddsm";
     int fd = init_serial(device);
     if (fd < 0) {
         fprintf(stderr, "ポート初期化に失敗しました\n");

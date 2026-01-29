@@ -92,7 +92,7 @@ int init_serial(const char *device) {
 
 int main(int argc, char *argv[]) {
     
-    const char *device = "/dev/ttyACM0";
+    const char *device = "/dev/ddsm";
     int fd = init_serial(device);
     if (fd < 0) {
         fprintf(stderr, "ポート初期化に失敗しました\n");

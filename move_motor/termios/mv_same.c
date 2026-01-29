@@ -98,7 +98,7 @@ int main(int argc, char *argv[]) {
     }
 
     int target_rpm = atoi(argv[1]);
-    const char *device = "/dev/ttyACM0";
+    const char *device = "/dev/ddsm";
     int fd = init_serial(device);
     if (fd < 0) {
         fprintf(stderr, "ポート初期化に失敗しました\n");

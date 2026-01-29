@@ -9,14 +9,15 @@
 #include <sys/mman.h>       // 共有メモリ用
 #include <sys/stat.h>
 
-// 共通メモリヘッダー
+// 共通で用いて受け渡しする構造体
 #include "common.h"
 
+//yamlファイルに書きたいけどあとからする
 // メカナムホイールパラメータ
-const double wheel_base_x = 0.3;    // ホイールベース X方向 [m] (適当値)
-const double wheel_base_y = 0.25;   // ホイールベース Y方向 [m] (適当値)
-const double wheel_radius = 0.05;   // ホイール半径 [m]
-const double gain = 1.0;            // ゲイン
+const double wheel_base_x = 0.42;    // ホイールベース X方向 [m] (仮)
+const double wheel_base_y = 0.34;   // ホイールベース Y方向 [m] (仮)
+const double wheel_radius = 0.08;   // ホイール半径 [m]
+const double gain = 1.0;            // ゲイン()
 
 // モーター補正係数（必要に応じて調整）
 const double motor_correction_fl = 1.0;  // Front Left
@@ -37,9 +38,9 @@ void calculate_mecanum_rpm(double vx, double vy, double wz, int16_t *rpm) {
 
     // Convert to RPM with hardware correction factors applied
     rpm[0] = (int16_t)(wheel_front_left_vel * rad_to_rpm * motor_correction_fl);
-    rpm[1] = (int16_t)(wheel_front_right_vel * rad_to_rpm * -1 * motor_correction_fr);
+    rpm[1] = (int16_t)(wheel_front_right_vel * rad_to_rpm * (-1) * motor_correction_fr); // 逆に回るから
     rpm[2] = (int16_t)(wheel_rear_left_vel * rad_to_rpm * motor_correction_rl);
-    rpm[3] = (int16_t)(wheel_rear_right_vel * rad_to_rpm * -1 * motor_correction_rr);
+    rpm[3] = (int16_t)(wheel_rear_right_vel * rad_to_rpm * (-1) * motor_correction_rr);
 }
 
 // CRC-8/MAXIM 計算 (変更なし)
@@ -98,41 +99,27 @@ int init_serial(const char *device) {
 }
 
 int main() {
-    const char *device = "/dev/ttyACM0";
+    const char *device = "/dev/ddsm";
     int serial_fd = init_serial(device);
     if (serial_fd < 0) {
         perror("シリアルポート失敗");
         return 1;
     }
 
-    // 共有メモリを開く
-    int shm_fd = shm_open(SHM_NAME, O_RDONLY, 0666);
-    if (shm_fd == -1) {
-        perror("共有メモリを開けませんでした。DualSense側を先に起動してください");
-        close(serial_fd);
-        return 1;
-    }
-
-    // 共有メモリを構造体にマッピング
-    VelocityCommand *cmd = (VelocityCommand *)mmap(NULL, sizeof(VelocityCommand), PROT_READ, MAP_SHARED, shm_fd, 0);
-    if (cmd == MAP_FAILED) {
-        perror("マッピング失敗");
-        return 1;
-    }
-
-    printf("DDSM制御ループ開始 (共有メモリ監視中...)\n");
+    printf("----DDSM制御ループ開始----\n");
 
     while (1) {
         // 共有メモリから3軸速度を取得
         const double vx = gain * cmd->vel_x;
         const double vy = gain * cmd->vel_y;
-        const double wz = gain * cmd->vel_z;
+        const double wz = gain * cmd->angular_z;
 
         // メカナム逆運動学でRPMを計算
         int16_t rpm_values[4];
         calculate_mecanum_rpm(vx, vy, wz, rpm_values);
 
         // 4つのモーターに個別のRPMを送信
+        // 確認必要
         // rpm_values[0]: Front Left (ID=1)
         // rpm_values[1]: Front Right (ID=2)
         // rpm_values[2]: Rear Left (ID=3)
@@ -151,8 +138,6 @@ int main() {
         usleep(20000);
     }
 
-    munmap(cmd, sizeof(VelocityCommand));
-    close(shm_fd);
     close(serial_fd);
     return 0;
 }
