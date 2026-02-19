@@ -10,7 +10,7 @@ slam_toolbox:
     scan_topic: /scan
     odom_topic: odom_rf2o 
     mode: mapping
-    minimum_travel_distance: 0.05
-    minimum_travel_heading: 0.05
-    map_update_interval: 2.0
+    minimum_travel_distance: 0.0
+    minimum_travel_heading: 0.5
+    map_update_interval: 5.0
     transform_publish_period: 0.02
