@@ -3,7 +3,7 @@ slam_toolbox:
     use_sim_time: false 
     odom_frame: odom
     map_frame: map
-    use_odom: true
+    use_odom: false
     base_frame: base_link
     publish_tf_map: true
     resolution: 0.05
