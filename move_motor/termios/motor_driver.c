@@ -72,7 +72,9 @@ int init_serial(const char *device) {
     options.c_cflag &= ~CSTOPB;
     options.c_cflag &= ~CSIZE;
     options.c_cflag |= CS8;
+#ifdef CRTSCTS
     options.c_cflag &= ~CRTSCTS;
+#endif
     options.c_lflag &= ~(ICANON | ECHO | ECHOE | ISIG);
     options.c_iflag &= ~(IXON | IXOFF | IXANY);
     options.c_oflag &= ~OPOST;
@@ -91,6 +93,20 @@ int init_serial(const char *device) {
 }
 
 int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        printf("使用法: %s <RPM>\n", argv[0]);
+        printf("例: %s 30\n", argv[0]);
+        return 1;
+    }
+
+    char *endptr = NULL;
+    long parsed = strtol(argv[1], &endptr, 10);
+    if (endptr == argv[1] || *endptr != '\0') {
+        fprintf(stderr, "RPMは整数で指定してください\n");
+        return 1;
+    }
+
+    int target_rpm = (int)parsed;
     
     const char *device = "/dev/ddsm";
     int fd = init_serial(device);

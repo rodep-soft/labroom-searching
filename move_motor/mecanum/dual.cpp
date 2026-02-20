@@ -16,31 +16,40 @@ extern "C" int init_dual() {
 extern "C" void update_dual(int fd) {
     if (fd < 0) return;
     struct js_event e;
+    static double l2_value = 0.0;
+    static double r2_value = 0.0;
+
+    auto apply_deadzone = [](double value) {
+        if (value > -DEADZONE && value < DEADZONE) return 0.0;
+        return value;
+    };
+
     // 全ての溜まっているイベントを処理する
     while (read(fd, &e, sizeof(e)) > 0) {
-        if (e.type & JS_EVENT_AXIS) {
+        unsigned char event_type = e.type & ~JS_EVENT_INIT;
+        if (event_type == JS_EVENT_AXIS) {
             // スティックの値を -1.0 ~ 1.0 に正規化
-            double val = 0.0;
-            val = (double)e.value / 32767.0;
-            
-            // デッドゾーン処理
-            if (val > -DEADZONE && val < DEADZONE) {
-                val = 0.0;
-            }
+            double val = (double)e.value / 32767.0;
+            val = apply_deadzone(val);
 
             // 番号は js_test 等で確認した DualSense の標準的な割当
             switch (e.number) {
-                case 1: // 前進・後進 <- Lx
+                case 1: // 前進・後進 <- Ly
                     cmd.vel_x = -val; // 上がマイナスなので反転
+                    break;
+                case 0: // 左右スライド <- Lx
+                    cmd.vel_y = val;
                     break;
                 case 4: // 左右スライド <- Ry
                     cmd.vel_y = val;
                     break;
                 case 2: // 左旋回 <- L2
-                    cmd.angular_z = val;
+                    l2_value = (val + 1.0) * 0.5; // [-1,1] -> [0,1]
+                    cmd.angular_z = l2_value - r2_value;
                     break;
                 case 5: // 右旋回 <- R2
-                    cmd.angular_z = -val; // 右スティックでの旋回は反転
+                    r2_value = (val + 1.0) * 0.5; // [-1,1] -> [0,1]
+                    cmd.angular_z = l2_value - r2_value;
                     break;
                 default:
                     break;
