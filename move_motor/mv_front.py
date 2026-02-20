@@ -70,4 +70,4 @@ if __name__ == "__main__":
         sys.exit(1)
 
     m_rpm = int(sys.argv[1])
-    send_vel_command('/dev/ttyACM0',m_rpm)
+    send_vel_command('/dev/ddsm',m_rpm)

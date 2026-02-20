@@ -58,4 +58,4 @@ if __name__ == "__main__":
         
     m_id = int(sys.argv[1])
     m_rpm = int(sys.argv[2])
-    send_velocity_command('/dev/ttyACM0', m_id, m_rpm)
+    send_velocity_command('/dev/ddsm', m_id, m_rpm)

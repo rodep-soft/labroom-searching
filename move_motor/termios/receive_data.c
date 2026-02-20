@@ -23,7 +23,7 @@ uint8_t calculate_crc8_maxim(uint8_t *data, int len) {
 }
 
 int main() {
-    const char *device = "/dev/ttyACM0";
+    const char *device = "/dev/ddsm";
     int fd;
     struct termios tty;
 
