@@ -15,3 +15,10 @@
 ```bash
 g++ -o robot main.cpp dual.cpp ddsm.c -lm -Wall
 ```
+
+## todo
+- ラズパイが壊れたらしいのでudevルールを作成する
+	- 参考: [udevルール作成記事](https://zenn.dev/karaage0703/articles/d6759ea297dbf8)
+- 逆運動学の計算ミスをしていないか
+- モーターの周り型の再確認
+- 一回やってみてずれるようだったらrox_tempのようにmotor_correctionを入れてみる
