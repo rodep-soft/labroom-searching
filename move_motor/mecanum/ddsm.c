@@ -19,7 +19,7 @@ extern "C" {
 const double L_SUM = 0.42 + 0.34; // wheel_base_x + y
 const double WHEEL_R = 0.08;
 const int MOTOR_MAX_RPM = 330;
-const double MAX_RPM = 30.0;
+const int USER_MAX_RPM = 30;
 
 // CRC-8 計算
 uint8_t calc_crc8(uint8_t *data, int len) {
@@ -61,10 +61,13 @@ void update_ddsm(int fd) {
     v[3] = (vx - vy + L_SUM * wz) / WHEEL_R; // RR
 
     for (int id = 1; id <= 4; id++) {
-        int rpm = (int)(v[id-1] * rad_to_rpm * MAX_RPM);
+        int rpm = (int)(v[id-1] * rad_to_rpm);
 
-        if (rpm > MOTOR_MAX_RPM) rpm = MOTOR_MAX_RPM;
-        if (rpm < -MOTOR_MAX_RPM) rpm = -MOTOR_MAX_RPM;
+        int rpm_limit = USER_MAX_RPM;
+        if (rpm_limit > MOTOR_MAX_RPM) rpm_limit = MOTOR_MAX_RPM;
+
+        if (rpm > rpm_limit) rpm = rpm_limit;
+        if (rpm < -rpm_limit) rpm = -rpm_limit;
         
         uint8_t pkt[10] = {id, 0x64, (uint8_t)(rpm>>8), (uint8_t)(rpm&0xFF), 0,0, 0x0A, 0,0, 0};
         // モーターID1,3が逆向きだから反転
