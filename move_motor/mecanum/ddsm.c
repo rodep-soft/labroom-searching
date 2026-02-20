@@ -7,6 +7,10 @@
 #include <math.h>
 #include "common.h"
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif  
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -14,6 +18,7 @@ extern "C" {
 // パラメータ
 const double L_SUM = 0.42 + 0.34; // wheel_base_x + y
 const double WHEEL_R = 0.08;
+const int MOTOR_MAX_RPM = 330;
 const double MAX_RPM = 30.0;
 
 // CRC-8 計算
@@ -30,7 +35,7 @@ uint8_t calc_crc8(uint8_t *data, int len) {
 }
 
 int init_ddsm() {
-    int fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_SYNC);
+    int fd = open("/dev/ddsm", O_RDWR | O_NOCTTY | O_SYNC);
     if (fd == -1) return -1;
     struct termios opt;
     tcgetattr(fd, &opt);
@@ -58,11 +63,11 @@ void update_ddsm(int fd) {
     for (int id = 1; id <= 4; id++) {
         int rpm = (int)(v[id-1] * rad_to_rpm * MAX_RPM);
 
-        if (rpm > 330) rpm = 330;
-        if (rpm < -330) rpm = -330;
+        if (rpm > MOTOR_MAX_RPM) rpm = MOTOR_MAX_RPM;
+        if (rpm < -MOTOR_MAX_RPM) rpm = -MOTOR_MAX_RPM;
         
         uint8_t pkt[10] = {id, 0x64, (uint8_t)(rpm>>8), (uint8_t)(rpm&0xFF), 0,0, 0x0A, 0,0, 0};
-        // モーターID1,3が逆向きならここで反転
+        // モーターID1,3が逆向きだから反転
         if (id == 1 || id == 3) {
              int rev_rpm = -rpm;
              pkt[2] = (uint8_t)(rev_rpm>>8);
