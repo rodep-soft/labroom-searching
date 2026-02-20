@@ -2,7 +2,7 @@
 #include <time.h>
 #include "common.h"
 
-// 実体の定義
+// 構造体の初期化
 VelocityCommand cmd = {0.0, 0.0, 0.0};
 
 extern "C" {
