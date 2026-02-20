@@ -78,7 +78,7 @@ void update_ddsm(int fd) {
         }
         pkt[9] = calc_crc8(pkt, 9);
         write(fd, pkt, 10);
-        usleep(1000); // モーター間の衝突防止
+        usleep(2500); // モーター間の衝突防止
     }
 }
 
