@@ -91,21 +91,13 @@ int init_serial(const char *device) {
 }
 
 int main(int argc, char *argv[]) {
-    if (argc < 2) {
-        printf("使用法: %s <RPM>\n", argv[0]);
-        printf("例: %s 30  (全輪 30rpm で回転)\n", argv[0]);
-        return 1;
-    }
-
-    int target_rpm = atoi(argv[1]);
+    
     const char *device = "/dev/ddsm";
     int fd = init_serial(device);
     if (fd < 0) {
         fprintf(stderr, "ポート初期化に失敗しました\n");
         return 1;
     }
-
-    printf("--- 4輪一括送信 (全輪 %d RPM) ---\n", target_rpm);
 
     for (uint8_t id = 1; id <= 4; id++) {
         uint8_t command[10];
