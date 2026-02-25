@@ -33,7 +33,8 @@ RUN apt-get update -y && \
 	rosdep install -y -i \
 	--from-paths src \
 	--ignore-src \
-	--rosdistro jazzy 
+	--rosdistro jazzy \
+	--skip-keys "cmake_modules"
 
 
 
