@@ -29,17 +29,15 @@ class JoyDriverNode : public rclcpp::Node {
         rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr joy_subscriber_;
         rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_publisher_;
 
-        // Parameters
+        // Parameters (loaded from config / ros parameters)
+        int linear_axis_x_ = 1;
+        int linear_axis_y_ = 0;
+        int rotate_axis_right_ = 3;
+        int rotate_axis_left_ = 2;
 
-        // 調べる必要あり
-        int linear_axis_x_;
-        int linear_axis_y_;
-        int rotate_axis_right_;
-        int rotate_axis_left_;
-
-        int max_rpm_;
+        int max_rpm_ = 330;
 
         double deadzone_linear_ = 0.05;
         double deadzone_angular_ = 0.03;
 
-    };
+};

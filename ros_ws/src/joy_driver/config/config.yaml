@@ -1,0 +1,8 @@
+joy_driver_node:
+  ros__parameters:
+    linear_axis_x: 1
+    linear_axis_y: 0
+    rotate_axis_right: 3
+    rotate_axis_left: 2
+    deadzone_linear: 0.05
+    deadzone_angular: 0.03
