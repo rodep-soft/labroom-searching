@@ -48,7 +48,7 @@ def generate_launch_description():
     base_to_laser = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
-        arguments=['0', '0', '0', '0', '0', '0', 'base_link', 'laser'],
+        arguments=['0.17', '0', '0.50', '0', '0', '0', 'base_link', 'laser'],
         #parameters=[{'use_sim_time': True}]
     )
 
