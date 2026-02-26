@@ -19,8 +19,8 @@ extern "C" {
 const double L_SUM = 0.42 + 0.34; // wheel_base_x + y
 const double WHEEL_R = 0.08;
 const int MOTOR_MAX_RPM = 330;
-const int USER_MAX_RPM = 30;
 const double STOP_EPS = 0.02;
+const int USER_MAX_RPM = 60;
 
 // CRC-8 計算
 uint8_t calc_crc8(uint8_t *data, int len) {
@@ -77,8 +77,8 @@ void update_ddsm(int fd) {
             pkt[3] = 0x00; // 速度低位 0
             pkt[4] = 0x00;
             pkt[5] = 0x00;
-            pkt[6] = 0x00;
-            pkt[7] = 0xFF; // ブレーキフラグ (datasheet)
+            pkt[6] = 0x05;
+            pkt[7] = 0x00; // ブレーキフラグ (datasheet)
             pkt[8] = 0x00;
         } else {
             // --- 通常走行設定 ---
@@ -98,7 +98,7 @@ void update_ddsm(int fd) {
             pkt[3] = (uint8_t)(rpm & 0xFF);
             pkt[4] = 0x00;
             pkt[5] = 0x00;
-            pkt[6] = 0x0A; // 加速
+            pkt[6] = 0x05; // 加速
             pkt[7] = 0x00;
             pkt[8] = 0x00;
         }
