@@ -9,10 +9,11 @@
 
 class MotorController {
 public:
+    MotorController();
     MotorController(const std::string& port_name, unsigned int baud_rate);
     void reinit_port(const std::string& port_name, unsigned int baud_rate);
-    std::vector<uint8_t> create_velocity_command(uint8_t motor_id, double target_velocity);
-    void send_velocity_command(uint8_t motor_id, double target_velocity);
+    std::vector<uint8_t> create_velocity_command(uint8_t motor_id, int rpm);
+    void send_velocity_command(uint8_t motor_id, int rpm);
 
 private:
     void init_port(const std::string& port_name, unsigned int baud_rate);
@@ -28,4 +29,5 @@ private:
 
     std::vector<uint8_t> buffer_;
 
+    const int SPEED_LOOP_COMMAND_ = 0x64; // 速度制御コマンド
 };
