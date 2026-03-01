@@ -25,7 +25,7 @@
 # No parity
 
 # ポートは権限に注意
-PORT="/dev/ttyUSB0"
+PORT="/dev/ddsm"
 
 BAUD="115200"
 
