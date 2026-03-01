@@ -3,12 +3,12 @@ slam_toolbox:
     use_sim_time: false 
     odom_frame: odom
     map_frame: map
-    use_odom: false
+    use_odom: true
     base_frame: base_link
     publish_tf_map: true
     resolution: 0.05
     scan_topic: /scan
-    odom_topic: odom_rf2o 
+    odom_topic: /odom 
     mode: mapping
     minimum_travel_distance: 0.0
     minimum_travel_heading: 0.5
