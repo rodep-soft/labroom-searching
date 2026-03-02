@@ -60,7 +60,7 @@ extern "C" void update_dual(int fd) {
                     break;
                 case 2: // L2
                 case 5: // R2
-                    cmd.angular_z = apply_deadzone(cmd.angular_z);
+                    cmd.angular_z = apply_deadzone(cmd.angular_z) * 0.8;
                     break;
                 default:
                     break;

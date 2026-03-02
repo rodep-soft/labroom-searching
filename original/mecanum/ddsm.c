@@ -20,7 +20,7 @@ const double L_SUM = 0.34 + 0.23; // wheel_base_x + y
 const double WHEEL_R = 0.08;
 const int MOTOR_MAX_RPM = 330;
 const double STOP_EPS = 0.02;
-const int USER_MAX_RPM = 30;
+const int USER_MAX_RPM = 25;
 
 // CRC-8 計算
 uint8_t calc_crc8(uint8_t *data, int len) {
