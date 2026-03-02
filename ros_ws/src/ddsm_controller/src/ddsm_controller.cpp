@@ -104,7 +104,7 @@ int main(int argc, char** argv) {
 }
 
 // --- helpers implementation ---
-uint8_t DDSMController::calc_crc8(const std::vector<uint8_t>& data) {
+uint8_t DDSMController::calc_crc8(const std::vector<uint8_t>& data) const {
     uint8_t crc = 0x00;
     const uint8_t poly = 0x8C; // reflected polynomial for CRC-8/MAXIM
     for (auto b : data) {
