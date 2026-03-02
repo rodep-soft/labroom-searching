@@ -38,7 +38,7 @@ class DDSMController : public rclcpp::Node {
 
         bool setup_serial_port(const std::string &port_name, unsigned int baud_rate);
 
-        uint8_t calc_crc8(const std::vector<uint8_t> &data);
+        uint8_t calc_crc8(const std::vector<uint8_t> &data) const;
         std::vector<uint8_t> create_velocity_command(uint8_t motor_id, int target_rpm, bool is_braking) const;
         std::array<int, 4> calculate_target_rpms_from_twist(const geometry_msgs::msg::Twist& twist) const;
         bool is_brake_command(const geometry_msgs::msg::Twist& twist) const;
